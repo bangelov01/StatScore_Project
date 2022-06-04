@@ -3,6 +3,7 @@
     using Microsoft.EntityFrameworkCore;
 
     using StatScore.Data;
+    using StatScore.Services;
     using StatScore.Services.Contracts;
 
     public static class WebApplicationExtensions
@@ -18,6 +19,13 @@
             await Seed(serviceProvider);
 
             return app;
+        }
+
+        public static WebApplicationBuilder AddTransient(this WebApplicationBuilder builder)
+        {
+            builder.Services.AddTransient<IDataSeederService, DataSeederService>();
+
+            return builder;
         }
 
         private async static Task Migrate(IServiceProvider provider)
