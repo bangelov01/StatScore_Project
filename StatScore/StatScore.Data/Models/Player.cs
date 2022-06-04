@@ -15,8 +15,11 @@
         [Key]
         public int Id { get; init; }
 
-        [Required, MaxLength(PlayerNameMaxLength)]
-        public string Name { get; set; }
+        [Required, MaxLength(PlayerFirstNameMaxLength)]
+        public string FirstName { get; set; }
+
+        [Required, MaxLength(PlayerLastNameMaxLength)]
+        public string LastName { get; set; }
 
         public bool IsInjured { get; set; }
 

@@ -10,7 +10,8 @@
 
         public const byte TeamNameMaxLength = 20;
 
-        public const byte PlayerNameMaxLength = 30;
+        public const byte PlayerFirstNameMaxLength = 20;
+        public const byte PlayerLastNameMaxLength = 20;
         public const byte PlayerPositionMaxLength = 4;
     }
 }
