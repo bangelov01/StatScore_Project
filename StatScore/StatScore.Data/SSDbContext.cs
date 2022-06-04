@@ -13,8 +13,25 @@
 
         }
 
+        public virtual DbSet<Country> Countries { get; init; }
+        public virtual DbSet<Favorites> Favorites { get; init; }
+        public virtual DbSet<Game> Games { get; init; }
+        public virtual DbSet<League> Leagues { get; init; }
+        public virtual DbSet<LeagueStats> LeagueStats { get; init; }
+        public virtual DbSet<Player> Players { get; init; }
+        public virtual DbSet<PlayerLeagueStats> PlayerLeagueStats { get; init; }
+        public virtual DbSet<Team> Teams { get; init; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<Favorites>()
+                   .HasKey(k => new { k.UserId, k.TeamId });
+
+            builder.Entity<LeagueStats>()
+                   .HasKey(k => new { k.TeamId, k.LeagueId });
+
+            builder.Entity<PlayerLeagueStats>()
+                   .HasKey(k => new { k.PlayerId, k.LeagueId });
 
             base.OnModelCreating(builder);
         }

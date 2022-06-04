@@ -20,4 +20,10 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\StatScore.Controllers\StatScore.Controllers.csproj" />
+    <ProjectReference Include="..\StatScore.Data\StatScore.Data.csproj" />
+    <ProjectReference Include="..\StatScore.Services\StatScore.Services.csproj" />
+  </ItemGroup>
+
 </Project>
