@@ -136,24 +136,248 @@
             await dbContext.SaveChangesAsync();
         }
 
-        public Task SeedGames()
+        public async Task SeedLeagueStats()
         {
-            throw new NotImplementedException();
+            if (await dbContext.LeagueStats.AnyAsync())
+            {
+                return;
+            }
+
+            await dbContext.LeagueStats.AddRangeAsync(new[]
+            {
+                new LeagueStats{
+                    LeagueId = 1,
+                    TeamId = 1,
+                    Wins = 3,
+                    Draws = 0,
+                    Losses = 1
+                },
+                new LeagueStats
+                {
+                    LeagueId = 1,
+                    TeamId = 2,
+                    Wins = 1,
+                    Draws = 2,
+                    Losses = 1
+                },
+                new LeagueStats
+                {
+                    LeagueId = 1,
+                    TeamId = 3,
+                    Wins = 4,
+                    Draws = 0,
+                    Losses = 0
+                },
+                new LeagueStats
+                {
+                    LeagueId = 1,
+                    TeamId = 4,
+                    Wins = 2,
+                    Draws = 1,
+                    Losses = 1
+                },
+                new LeagueStats
+                {
+                    LeagueId = 3,
+                    TeamId = 1,
+                    Wins = 1,
+                    Draws = 2,
+                    Losses = 1
+                },
+                new LeagueStats
+                {
+                    LeagueId = 3,
+                    TeamId = 4,
+                    Wins = 1,
+                    Draws = 1,
+                    Losses = 2
+                },
+                new LeagueStats
+                {
+                    LeagueId = 3,
+                    TeamId = 3,
+                    Wins = 4,
+                    Draws = 0,
+                    Losses = 0
+                },
+                new LeagueStats
+                {
+                    LeagueId = 3,
+                    TeamId = 2,
+                    Wins = 0,
+                    Draws = 4,
+                    Losses = 0
+                },
+                new LeagueStats
+                {
+                    LeagueId = 2,
+                    TeamId = 5,
+                    Wins = 4,
+                    Draws = 0,
+                    Losses = 0
+                },
+                new LeagueStats
+                {
+                    LeagueId = 2,
+                    TeamId = 6,
+                    Wins = 3,
+                    Draws = 1,
+                    Losses = 0
+                },
+                new LeagueStats
+                {
+                    LeagueId = 2,
+                    TeamId = 7,
+                    Wins = 1,
+                    Draws = 2,
+                    Losses = 1
+                },
+                new LeagueStats
+                {
+                    LeagueId = 2,
+                    TeamId = 8,
+                    Wins = 0,
+                    Draws = 3,
+                    Losses = 1
+                },
+            });
+
+            await dbContext.SaveChangesAsync();
         }
 
-        public Task SeedLeagueStats()
+        public async Task SeedGames()
         {
-            throw new NotImplementedException();
+            if (await dbContext.Games.AnyAsync())
+            {
+                return;
+            }
+
+            var games = CreateGames(new int[,] { { 1, 1, 4 }, { 2, 5, 8 }, { 3, 1, 4 } }, new Random());
+
+            await dbContext.Games.AddRangeAsync(games);
+
+            await dbContext.SaveChangesAsync();
         }
 
-        public Task SeedPlayerLeagueStats()
+        public async Task SeedPlayers()
         {
-            throw new NotImplementedException();
+            if (await dbContext.Players.AnyAsync())
+            {
+                return;
+            }
+
+            await dbContext.Players.AddRangeAsync(new[]
+            {
+                new Player{FirstName = "Mason", LastName = "Mount", IsInjured = false, Position = "CAM", TeamId = 1},
+                new Player{FirstName = "Ngolo", LastName = "Kante", IsInjured = false, Position = "MF", TeamId = 1},
+                new Player{FirstName = "Luiz", LastName = "Jorginho", IsInjured = true, Position = "MF", TeamId = 1},
+                new Player{FirstName = "Bukayo", LastName = "Saka", IsInjured = false, Position = "FW", TeamId = 2},
+                new Player{FirstName = "Alexandre", LastName = "Lacazette", IsInjured = false, Position = "FW", TeamId = 2},
+                new Player{FirstName = "Martin", LastName = "Odegard", IsInjured = true, Position = "MF", TeamId = 2},
+                new Player{FirstName = "Kevin", LastName = "DeBruyne", IsInjured = false, Position = "MF", TeamId = 3},
+                new Player{FirstName = "Phil", LastName = "Foden", IsInjured = false, Position = "MF", TeamId = 3},
+                new Player{FirstName = "Jack", LastName = "Grealish", IsInjured = true, Position = "MF", TeamId = 3},
+                new Player{FirstName = "Cristiano", LastName = "Ronaldo", IsInjured = false, Position = "FW", TeamId = 4},
+                new Player{FirstName = "Jadon", LastName = "Sancho", IsInjured = false, Position = "RW", TeamId = 4},
+                new Player{FirstName = "Paul", LastName = "Pogba", IsInjured = false, Position = "CM", TeamId = 4},
+                new Player{FirstName = "Karim", LastName = "Benzema", IsInjured = false, Position = "FW", TeamId = 5},
+                new Player{FirstName = "Vinicious", LastName = "Junior", IsInjured = false, Position = "LW", TeamId = 5},
+                new Player{FirstName = "Toni", LastName = "Kroos", IsInjured = false, Position = "CM", TeamId = 5},
+                new Player{FirstName = "Pablo", LastName = "Gavira", IsInjured = false, Position = "CM", TeamId = 6},
+                new Player{FirstName = "Ousmane", LastName = "Dembele", IsInjured = false, Position = "RW", TeamId = 6},
+                new Player{FirstName = "Gerard", LastName = "Pique", IsInjured = true, Position = "CD", TeamId = 6},
+                new Player{FirstName = "Carlos", LastName = "Soler", IsInjured = false, Position = "CM", TeamId = 7},
+                new Player{FirstName = "Jose", LastName = "Gaya", IsInjured = false, Position = "CD", TeamId = 7},
+                new Player{FirstName = "Goncalo", LastName = "Guedes", IsInjured = false, Position = "FW", TeamId = 7},
+                new Player{FirstName = "Marcos", LastName = "Llorente", IsInjured = false, Position = "CM", TeamId = 8},
+                new Player{FirstName = "Felipe", LastName = "Monteiro", IsInjured = false, Position = "CD", TeamId = 8},
+                new Player{FirstName = "Luis", LastName = "Suarez", IsInjured = false, Position = "FW", TeamId = 8},
+            });
+
+            await dbContext.SaveChangesAsync();
         }
 
-        public Task SeedPlayers()
+        public async Task SeedPlayerLeagueStats()
         {
-            throw new NotImplementedException();
+            if (await dbContext.PlayerLeagueStats.AnyAsync())
+            {
+                return;
+            }
+
+            var plStats = CreatePlayerLeagueStats(new int[,] { { 1, 1, 12 }, { 3, 1, 12 }, { 2, 13, 24 } }, new Random());
+
+            await dbContext.PlayerLeagueStats.AddRangeAsync(plStats);
+
+            await dbContext.SaveChangesAsync();
+        }
+
+        private HashSet<Game> CreateGames(int[,] arr, Random rand)
+        {
+            var result = new HashSet<Game>();
+
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                int leagueId = arr[i, 0];
+                int firstTeamId = arr[i, 1];
+                int lastTeamId = arr[i, 2];
+
+                int save = lastTeamId;
+
+                for (int j = firstTeamId; j <= lastTeamId; j++)
+                {
+                    result.Add(new Game
+                    {
+                        LeagueId = leagueId,
+                        HomeTeamId = j,
+                        AwayTeamId = j == firstTeamId ? lastTeamId : save -= 1,
+                        HomeTeamGoals = (byte)rand.Next(0, 10),
+                        AwayTeamGoals = (byte)rand.Next(0, 10),
+                        HomeTeamFauls = (byte)rand.Next(0, 20),
+                        AwayTeamFauls = (byte)rand.Next(0, 20),
+                        HomeTeamPasses = rand.Next(100, 680),
+                        AwayTeamPasses = rand.Next(100, 680),
+                        HomeTeamShots = (byte)rand.Next(0, 15),
+                        AwayTeamShots = (byte)rand.Next(0, 15),
+                        Date = GetRandomDate(),
+                    });
+                }
+            }
+
+            return result;
+        }
+
+        private HashSet<PlayerLeagueStats> CreatePlayerLeagueStats(int[,] arr, Random rand)
+        {
+            var result = new HashSet<PlayerLeagueStats>();
+
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                int leagueId = arr[i, 0];
+                int firstPlayerId = arr[i, 1];
+                int lastPlayerId = arr[i, 2];
+
+                for (int j = firstPlayerId; j <= lastPlayerId; j++)
+                {
+                    result.Add(new PlayerLeagueStats
+                    {
+                        PlayerId = j,
+                        LeagueId = leagueId,
+                        Goals = (byte)rand.Next(0, 30),
+                        Assists = (byte)rand.Next(0, 50),
+                        Appearences = (byte)rand.Next(0, 6),
+                    });
+                }
+            }
+
+            return result;
+        }
+
+        private DateTime GetRandomDate()
+        {
+            DateTime start = new DateTime(2022, 1, 1);
+            Random gen = new Random();
+            int range = (DateTime.Today - start).Days;
+            return start.AddDays(gen.Next(range));
         }
     }
 }

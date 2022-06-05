@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using StatScore.Web.Infrastructure;
 using StatScore.Data;
+using StatScore.Data.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +17,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.AddTransient();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+builder.Services.AddDefaultIdentity<User>(options =>
 {
     options.Password.RequireDigit = false;
     options.Password.RequireLowercase = false;
