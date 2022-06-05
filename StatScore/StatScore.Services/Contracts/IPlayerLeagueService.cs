@@ -4,6 +4,6 @@
 
     public interface IPlayerLeagueService
     {
-        public Task<IEnumerable<PlayerLeagueStatisticServiceModel>> TopFourPlayersAccrossLeagues();
+        public Task<IEnumerable<PlayerLeagueStatisticServiceModel>> TopPlayersAccrossLeagues(int count);
     }
 }

@@ -14,12 +14,12 @@
             this.playerLeagueService = playerLeagueService;
         }
 
-        [HttpGet("Top")]
-        public async Task<IActionResult> GetTopFourPlayers()
+        [HttpGet("Top/{count}")]
+        public async Task<IActionResult> GetTopPlayers(int count)
         {
             try
             {
-                var players = await playerLeagueService.TopFourPlayersAccrossLeagues();
+                var players = await playerLeagueService.TopPlayersAccrossLeagues(count);
 
                 return Ok(players);
             }

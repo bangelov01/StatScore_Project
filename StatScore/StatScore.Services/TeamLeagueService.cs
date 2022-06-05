@@ -29,7 +29,7 @@
                .ThenByDescending(o => o.Draws)
                .ToArrayAsync();
 
-        public async Task<IEnumerable<TeamLeagueStatisticServiceModel>> TopFourTeamsAcrossLeagues()
+        public async Task<IEnumerable<TeamLeagueStatisticServiceModel>> TopTeamsAcrossLeagues(int count)
                => await dbContext
                  .LeagueStats
                  .GroupBy(x => x.Team.Name)
@@ -42,7 +42,7 @@
                  })
                  .OrderByDescending(o => o.Wins)
                  .ThenByDescending(o => o.Draws)
-                 .Take(4)
+                 .Take(count)
                  .ToArrayAsync();
 
     }

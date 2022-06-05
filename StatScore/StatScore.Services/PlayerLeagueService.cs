@@ -14,7 +14,7 @@
             this.dbContext = dbContext;
         }
 
-        public async Task<IEnumerable<PlayerLeagueStatisticServiceModel>> TopFourPlayersAccrossLeagues()
+        public async Task<IEnumerable<PlayerLeagueStatisticServiceModel>> TopPlayersAccrossLeagues(int count)
                => await dbContext
                .PlayerLeagueStats
                .GroupBy(g => new { g.Player.FirstName, g.Player.LastName })
@@ -29,7 +29,7 @@
                })
                .OrderByDescending(o => o.Goals)
                .ThenByDescending(o => o.Assists)
-               .Take(4)
+               .Take(count)
                .ToArrayAsync();
 
     }

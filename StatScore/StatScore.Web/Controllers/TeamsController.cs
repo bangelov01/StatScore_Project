@@ -14,12 +14,12 @@
             this.teamLeagueService = teamLeagueService;
         }
 
-        [HttpGet("Top")]
-        public async Task<IActionResult> GetTopFourTeams()
+        [HttpGet("Top/{count}")]
+        public async Task<IActionResult> GetTopTeams(int count)
         {
             try
             {
-                var teams = await teamLeagueService.TopFourTeamsAcrossLeagues();
+                var teams = await teamLeagueService.TopTeamsAcrossLeagues(count);
 
                 return Ok(teams);
             }
