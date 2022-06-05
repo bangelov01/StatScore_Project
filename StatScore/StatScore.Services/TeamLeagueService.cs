@@ -1,6 +1,7 @@
 ﻿namespace StatScore.Services
 {
     using Microsoft.EntityFrameworkCore;
+
     using StatScore.Data;
     using StatScore.Services.Contracts;
     using StatScore.Services.Models;

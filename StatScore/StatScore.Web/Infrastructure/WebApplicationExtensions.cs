@@ -28,6 +28,7 @@
             builder.Services.AddTransient<IGameService, GameService>();
             builder.Services.AddTransient<ITeamLeagueService, TeamLeagueService>();
             builder.Services.AddTransient<IPlayerLeagueService, PlayerLeagueService>();
+            builder.Services.AddTransient<IAuthenticationService, AuthenticationService>();
 
             return builder;
         }

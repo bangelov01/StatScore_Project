@@ -1,11 +1,13 @@
 ﻿namespace StatScore.Services
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
     using Microsoft.EntityFrameworkCore;
+
     using StatScore.Data;
     using StatScore.Services.Contracts;
     using StatScore.Services.Models;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
 
     public class GameService : IGameService
     {
