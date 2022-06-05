@@ -32,9 +32,6 @@
 
         public virtual Team Team { get; set; }
 
-        [Required, Column(TypeName = "nvarchar(2048)")]
-        public string LogoURL { get; set; }
-
         public virtual ICollection<PlayerLeagueStats> PlayerLeagueStats { get; init; }
     }
 }
