@@ -18,10 +18,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.5" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.5" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StatScore.Controllers\StatScore.Controllers.csproj" />
     <ProjectReference Include="..\StatScore.Data\StatScore.Data.csproj" />
     <ProjectReference Include="..\StatScore.Services\StatScore.Services.csproj" />
   </ItemGroup>
