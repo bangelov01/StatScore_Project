@@ -8,15 +8,23 @@
     public class HomeController : Controller
     {
         private readonly ILeagueService leagueService;
+        private readonly IGameService gameService;
 
-        public HomeController(ILeagueService leagueService)
+        public HomeController(ILeagueService leagueService, IGameService gameService)
         {
             this.leagueService = leagueService;
+            this.gameService = gameService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var result = await leagueService.TopFourTeams();
+            var result = await leagueService.TopFourTeamsAcrossLeagues();
+
+            var result1 = await leagueService.LeagueTable(2);
+
+            var result2 = await leagueService.LeagueInfo(1);
+
+            var result4 = await gameService.GamesForLeague(1);
 
             return View();
         }

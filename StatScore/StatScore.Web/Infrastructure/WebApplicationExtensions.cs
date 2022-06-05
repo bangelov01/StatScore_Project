@@ -25,6 +25,7 @@
         {
             builder.Services.AddTransient<IDataSeederService, DataSeederService>();
             builder.Services.AddTransient<ILeagueService, LeagueService>();
+            builder.Services.AddTransient<IGameService, GameService>();
 
             return builder;
         }
