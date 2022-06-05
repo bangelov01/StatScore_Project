@@ -1,20 +1,23 @@
 ﻿namespace StatScore.Web.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
+    using StatScore.Services.Contracts;
     using StatScore.Web.Models;
     using System.Diagnostics;
 
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILeagueService leagueService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILeagueService leagueService)
         {
-            _logger = logger;
+            this.leagueService = leagueService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var result = await leagueService.TopFourTeams();
+
             return View();
         }
 

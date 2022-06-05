@@ -22,7 +22,5 @@
         public byte Losses { get; set; }
 
         public byte Draws { get; set; }
-
-        public double WinRatio { get; private set; }
     }
 }

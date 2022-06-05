@@ -24,6 +24,7 @@
         public static WebApplicationBuilder AddTransient(this WebApplicationBuilder builder)
         {
             builder.Services.AddTransient<IDataSeederService, DataSeederService>();
+            builder.Services.AddTransient<ILeagueService, LeagueService>();
 
             return builder;
         }

@@ -27,13 +27,8 @@
             builder.Entity<Favorites>()
                    .HasKey(k => new { k.UserId, k.TeamId });
 
-            builder.Entity<LeagueStats>(ls =>
-            {
-                ls.HasKey(k => new { k.TeamId, k.LeagueId });
-
-                ls.Property(p => p.WinRatio)
-                .HasComputedColumnSql("(CAST([Wins] AS FLOAT) / CAST([Wins] + [Losses] + [Draws] AS FLOAT)) * 100");
-            });
+            builder.Entity<LeagueStats>()
+                .HasKey(k => new { k.TeamId, k.LeagueId });
 
             builder.Entity<PlayerLeagueStats>()
                    .HasKey(k => new { k.PlayerId, k.LeagueId });
