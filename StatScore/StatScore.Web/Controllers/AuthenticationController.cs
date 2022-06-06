@@ -3,7 +3,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     using StatScore.Services.Contracts;
-    using StatScore.Services.Models.Authorization;
+    using StatScore.Services.Models.Authentication;
 
     [Route("api/[controller]")]
     [ApiController]

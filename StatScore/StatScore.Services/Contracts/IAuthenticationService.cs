@@ -1,6 +1,6 @@
 ﻿namespace StatScore.Services.Contracts
 {
-    using StatScore.Services.Models.Authorization;
+    using StatScore.Services.Models.Authentication;
 
     public interface IAuthenticationService
     {

@@ -1,0 +1,19 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #37589a;
+    overflow-x: hidden;
+    margin-bottom: 60px;
+}
+
+html {
+    font-size: 14px;
+}
+  
+html {
+    position: relative;
+    min-height: 100%;
+}

@@ -1,4 +1,4 @@
-﻿namespace StatScore.Services.Models.Authorization
+﻿namespace StatScore.Services.Models.Authentication
 {
     public class TokenModel
     {
