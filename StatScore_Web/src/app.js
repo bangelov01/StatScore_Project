@@ -1,12 +1,20 @@
-import { register, login } from "./api/api.js";
-import { getTopTeams } from "./api/data.js"
+import page from "../node_modules/page/page.mjs"
+import { render } from "../node_modules/lit-html/lit-html.js"
 
-//const response = await register("string", "user@example.com", "string");
+import { setUpUserNav } from "./navigation/navigation.js"
 
-const response = await login("string", "string");
+import { registerPage } from "./views/register.js"
 
-const teams = await getTopTeams(4);
+const main = document.querySelector("main");
 
-console.log(response);
-console.log(teams);
+page("/register", middleWareRender, registerPage);
 
+setUpUserNav();
+page.start();
+
+
+function middleWareRender(ctx, next) {
+    ctx.render = (content) => render(content, main);
+    ctx.setUpUserNav = setUpUserNav;
+    next();
+}
