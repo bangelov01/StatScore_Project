@@ -4,10 +4,12 @@ import { render } from "../node_modules/lit-html/lit-html.js"
 import { setUpUserNav } from "./navigation/navigation.js"
 
 import { registerPage } from "./views/register.js"
+import { loginPage } from "./views/login.js"
 
 const main = document.querySelector("main");
 
 page("/register", middleWareRender, registerPage);
+page("/login", middleWareRender, loginPage);
 
 setUpUserNav();
 page.start();

@@ -23,7 +23,7 @@ async function login(username, password) {
 
     sessionStorage.setItem("userToken", response.token);
     sessionStorage.setItem("userId", response.id);
-    sessionStorage.setItem("username", response.username);
+    sessionStorage.setItem("username", response.userName);
 
     return response;
 }

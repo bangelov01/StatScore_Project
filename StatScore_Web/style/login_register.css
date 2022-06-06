@@ -78,11 +78,3 @@ a {
 .button:hover {
     background-color: #044488;
 }
-
-.navbar-collapse {
-    display:inline; 
-}
-
-#guest li{
-    display: inline;
-}

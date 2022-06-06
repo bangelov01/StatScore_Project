@@ -26,6 +26,7 @@ builder.Services.AddDefaultIdentity<User>(options =>
     options.Password.RequireLowercase = false;
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequireUppercase = false;
+    options.Password.RequiredLength = 1;
 })
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<SSDbContext>();

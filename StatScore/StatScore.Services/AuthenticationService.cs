@@ -73,8 +73,6 @@
 
         public async Task<ResponseModel> Register(RegisterModel model)
         {
-            var responseModel = new ResponseModel();
-
             var userExists = await userManager.FindByNameAsync(model.Username);
 
             if (userExists != null)
