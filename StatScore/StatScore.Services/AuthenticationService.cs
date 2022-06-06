@@ -11,7 +11,9 @@
 
     using StatScore.Data.Models;
     using StatScore.Services.Contracts;
-    using StatScore.Services.Models.Authentication;
+    using StatScore.Services.Models;
+    using StatScore.Services.Models.Authentication.Export;
+    using StatScore.Services.Models.Authentication.Import;
 
     public class AuthenticationService : IAuthenticationService
     {
@@ -28,7 +30,7 @@
             this.configuration = configuration;
         }
 
-        public async Task<TokenModel> Login(LoginModel model)
+        public async Task<UserInfoModel> Login(LoginModel model)
         {
             var user = await userManager.FindByNameAsync(model.Username);
 
@@ -57,8 +59,10 @@
                     signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
                     );
 
-                return new TokenModel
+                return new UserInfoModel
                 {
+                    Id = user.Id,
+                    UserName = user.UserName,
                     Token = new JwtSecurityTokenHandler().WriteToken(token),
                     Expiration = token.ValidTo
                 };

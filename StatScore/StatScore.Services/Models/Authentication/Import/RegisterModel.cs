@@ -1,4 +1,4 @@
-﻿namespace StatScore.Services.Models.Authentication
+﻿namespace StatScore.Services.Models.Authentication.Import
 {
     using System.ComponentModel.DataAnnotations;
 

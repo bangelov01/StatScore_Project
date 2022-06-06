@@ -5,7 +5,6 @@
 
     using StatScore.Services.Contracts;
 
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class TeamsController : ControllerBase

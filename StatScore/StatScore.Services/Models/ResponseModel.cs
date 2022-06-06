@@ -1,4 +1,4 @@
-﻿namespace StatScore.Services.Models.Authentication
+﻿namespace StatScore.Services.Models
 {
     public class ResponseModel
     {

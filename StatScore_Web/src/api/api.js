@@ -10,6 +10,24 @@ async function post(url, data) {
     return request(url, options("POST", data));
 }
 
+async function register(username, email, password) {
+
+    const response = await post(settings.host + "/api/Authentication/Register", {username, email, password});
+
+    return response;
+}
+
+async function login(username, password) {
+
+    const response = await post(settings.host + "/api/Authentication/Login", {username, password});
+
+    sessionStorage.setItem("userToken", response.token);
+    sessionStorage.setItem("userId", response.id);
+    sessionStorage.setItem("username", response.username);
+
+    return response;
+}
+
 async function request(url, options) {
 
     try {
@@ -48,7 +66,7 @@ function options(method = "GET", data) {
 
     const token = sessionStorage.getItem("userToken");
     if (token !== null) {
-        result.headers["X-Authorization"] = token;
+        result.headers["Authorization"] = "Bearer " + token;
     }
 
     return result;
@@ -57,5 +75,7 @@ function options(method = "GET", data) {
 export {
     get,
     post,
+    register,
+    login,
     settings
 }
