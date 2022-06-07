@@ -7,6 +7,8 @@
     using StatScore.Data;
     using StatScore.Services.Contracts;
     using StatScore.Services.Models;
+    using StatScore.Services.Models.League;
+    using StatScore.Services.Models.League.Base;
 
     public class LeagueService : ILeagueService
     {
@@ -32,7 +34,7 @@
                .ThenByDescending(o => o.Draws)
                .ToArrayAsync();
 
-        public async Task<LeagueInfoServiceModel> LeagueInfo(int id)
+        public async Task<LeagueInfoServiceModel> LeagueFullInfo(int id)
             => await dbContext
             .Leagues
             .Where(x => x.Id == id)
@@ -45,5 +47,14 @@
             })
             .FirstOrDefaultAsync();
 
+        public async Task<IEnumerable<LeagueBaseModel>> LeaguesBaseInfo()
+            => await dbContext
+            .Leagues
+            .Select(l => new LeagueBaseModel
+            {
+                Id = l.Id,
+                Name = l.Name
+            })
+            .ToArrayAsync();
     }
 }

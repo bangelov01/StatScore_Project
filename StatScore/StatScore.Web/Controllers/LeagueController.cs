@@ -14,12 +14,27 @@
             this.leagueService = leagueService;
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetLeague(int id)
+        [HttpGet]
+        public async Task<IActionResult> LeaguesBasicInfo()
         {
             try
             {
-                var league = await leagueService.LeagueInfo(id);
+                var leagues = await leagueService.LeaguesBaseInfo();
+
+                return Ok(leagues);
+            }
+            catch
+            {
+                return StatusCode(500, "Internal server error!");
+            }
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> LeagueFullInfo(int id)
+        {
+            try
+            {
+                var league = await leagueService.LeagueFullInfo(id);
 
                 return Ok(league);
             }
@@ -31,7 +46,7 @@
 
 
         [HttpGet("Stats/{id}")]
-        public async Task<IActionResult> GetTable(int id)
+        public async Task<IActionResult> LeagueStats(int id)
         {
             try
             {

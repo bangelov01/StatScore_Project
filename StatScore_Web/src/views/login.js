@@ -1,8 +1,6 @@
 import { login } from "../api/data.js"
 import { loginTemplate } from "../templates/loginTemplate.js"
 
-
-
 export async function loginPage(ctx) {
 
     ctx.render(loginTemplate(onSubmit));
