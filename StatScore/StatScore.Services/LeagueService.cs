@@ -17,6 +17,21 @@
             this.dbContext = dbContext;
         }
 
+        public async Task<IEnumerable<TeamLeagueStatisticServiceModel>> LeagueStats(int id)
+               => await dbContext
+               .LeagueStats
+               .Where(ls => ls.LeagueId == id)
+               .Select(ls => new TeamLeagueStatisticServiceModel
+               {
+                   TeamName = ls.Team.Name,
+                   Wins = ls.Wins,
+                   Draws = ls.Draws,
+                   Losses = ls.Losses
+               })
+               .OrderByDescending(o => o.Wins)
+               .ThenByDescending(o => o.Draws)
+               .ToArrayAsync();
+
         public async Task<LeagueInfoServiceModel> LeagueInfo(int id)
             => await dbContext
             .Leagues

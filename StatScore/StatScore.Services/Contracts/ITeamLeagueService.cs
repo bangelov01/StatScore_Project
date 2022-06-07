@@ -5,7 +5,5 @@
     public interface ITeamLeagueService
     {
         public Task<IEnumerable<TeamLeagueStatisticServiceModel>> TopTeamsAcrossLeagues(int count);
-
-        public Task<IEnumerable<TeamLeagueStatisticServiceModel>> LeagueTable(int id);
     }
 }

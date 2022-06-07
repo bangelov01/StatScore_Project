@@ -15,7 +15,17 @@ async function getTopPlayers(count) {
     return await api.get(host + "/api/Players/Top/" + count);
 }
 
+async function getLeagueInfo(id) {
+    return await api.get(host + "/api/League/" + id);
+}
+
+async function getLeagueStats(id) {
+    return await api.get(host + "/api/League/Stats/" + id);
+}
+
 export {
     getTopTeams,
-    getTopPlayers
+    getTopPlayers,
+    getLeagueInfo,
+    getLeagueStats
 }
