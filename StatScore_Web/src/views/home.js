@@ -1,71 +1,97 @@
 import { html } from "../../node_modules/lit-html/lit-html.js"
+import { getTopTeams } from "../api/data.js"
+import { getTopPlayers } from "../api/data.js"
 
-const topTeamsTemplate = html`
-<div class="card bg-light shadow" style="width: 30rem; border-radius: 4%;">
-    <img src="https://seeklogo.com/images/E/emirates-fa-cup-logo-4A51E1714E-seeklogo.com.png" class="card-img-top" alt="...">
-    <div class="card-body text-center">
-        <h5 class="card-title fst-italic display-6 fw-bold" style="color:#00aded">Current Standings</h5>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">P.</th>
-                    <th scope="col">Team</th>
-                    <th scope="col">Wins</th>
-                    <th scope="col">Draws</th>
-                    <th scope="col">Losses</th>
-                   @* <th scope="col">Favorite</th>*@
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Chelsea</td>
-                    <td>24</td>
-                    <td>4</td>
-                    <td>3</td>
-                    @*<td><button type="button" class="btn btn-primary">Favorite</button></td>*@
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Arsenal</td>
-                    <td>Thornton</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Man. City</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="card-body">
-        <a href="#" class="card-link">Card link</a>
-        <a href="#" class="card-link">Another link</a>
-    </div>
-</div>
-`; 
-
-const homeTemplate = html`
+const homeTemplate = (teams, players) => html`
 <section id="welcome">
-   <div class="text-center mt-4">
-      <h1 class="display-3 text-white fst-italic shadow-text">Welcome to StatScore</h1>
-      <p class="display-6 text-white fst-italic shadow-text">Your daily stat checker</p>
+   <div class="welcome text-center mt-4">
+      <h1>Welcome to <span>StatScore</span></h1>
+      <h2>Your daily stat checker</h2>
    </div>
    <div class="container home">
-   <div class="row row-cols-1 row-cols-md-2 g-4">
-   ${topTeamsTemplate}
-   <div class="col">
-      <div class="card">
-         <img src="..." class="card-img-top" alt="...">
-         <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+         <div class="col col-centered">
+            <div class="card bg-light shadow" style="width: 30rem; border-radius: 4%;">
+               <div class="card-body text-center">
+                  <h5 class="card-title fst-italic display-6 fw-bold">Top Performing Teams</h5>
+                  <h4>Across all leagues</h4>
+                  <table class="table table-hover">
+                     <thead>
+                        <tr>
+                           <th scope="col">P.</th>
+                           <th scope="col">Team</th>
+                           <th scope="col">Wins</th>
+                           <th scope="col">Draws</th>
+                           <th scope="col">Losses</th>
+                           <th scope="col">Win Ratio</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                     ${teams.map(topTeamsTemplate, 0)}
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+         <div class="col col-centered">
+            <div class="card bg-light shadow" style="width: 30rem; border-radius: 4%;">
+               <div class="card-body text-center">
+                  <h5 class="card-title fst-italic display-6 fw-bold">Top Performing Players</h5>
+                  <h4>Across all leagues</h4>
+                  <table class="table table-hover">
+                     <thead>
+                        <tr>
+                           <th scope="col">P.</th>
+                           <th scope="col">Name</th>
+                           <th scope="col">Goals</th>
+                           <th scope="col">Assists</th>
+                           <th scope="col">Apps.</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                     ${players.map(topPlayersTemplate, 0)}
+                     </tbody>
+                  </table>
+               </div>
+            </div>
          </div>
       </div>
    </div>
-</div>
-   </div>
 </section>
 `;
+
+const topTeamsTemplate = (team, index) => html`
+<tr>
+   <th scope="row">${++index}</th>
+   <td>${team.teamName}</td>
+   <td>${team.wins}</td>
+   <td>${team.draws}</td>
+   <td>${team.losses}</td>
+   <td>${team.winRate}%</td>
+</tr>
+`; 
+
+
+
+const topPlayersTemplate = (player, index) => html`
+<tr>
+   <th scope="row">${++index}</th>
+   <td>${player.firstName + " " + player.lastName}</td>
+   <td>${player.goals}</td>
+   <td>${player.assists}</td>
+   <td>${player.appearences}</td>
+</tr> 
+`;
+
 export async function homePage(ctx) {
-    ctx.render(homeTemplate);
+
+    const numberOfTeams = 4;
+    const numberOfPlayers = 4;
+
+    const teams = await getTopTeams(numberOfTeams);
+    const players = await getTopPlayers(numberOfPlayers);
+
+    console.log(players)
+
+    ctx.render(homeTemplate(teams, players));
 }

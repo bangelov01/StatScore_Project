@@ -15,8 +15,14 @@
     margin-left: 50px;
 }
 
-.logo span {
+.logo-span {
+    position: relative;
     color:greenyellow;
+}
+
+.user-span{
+    position: relative;
+    color:whitesmoke;
 }
 
 .navbar ul {

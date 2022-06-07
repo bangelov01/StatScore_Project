@@ -44,3 +44,24 @@ html {
     background-color: green;
 }
 
+.welcome h1{
+    color: black;
+    font-size: 80px;
+    margin-left: 50px;
+    margin-top: 40px;
+    font-style: italic;
+}
+
+.welcome h2 {
+
+    color: black;
+    font-size: 45px;
+    margin-top: 25px;
+    font-style:italic;
+    margin-bottom: 50px;
+}
+
+.welcome span {
+    color: yellowgreen;
+}
+

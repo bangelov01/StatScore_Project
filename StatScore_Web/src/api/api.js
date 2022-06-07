@@ -34,6 +34,7 @@ function logout(){
     sessionStorage.removeItem("userToken");
     sessionStorage.removeItem("userId");
     sessionStorage.removeItem("username");
+    sessionStorage.removeItem("tokenExpiration");
 }
 
 async function request(url, options) {
