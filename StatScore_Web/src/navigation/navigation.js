@@ -4,11 +4,12 @@ export function setUpUserNav() {
     const username = sessionStorage.getItem('username');
 
     if (token !== null) {
-        document.querySelector(".navbar-collapse span").textContent = `Welcome, ${username}`
-        document.querySelector('.user').setAttribute('style', 'display: inline');
+        const els = document.querySelectorAll(".guest"); //todo
+        document.querySelector(".profile span").textContent = `Welcome, ${email}`
+        document.querySelector('.user').setAttribute('style', 'display:block');
         document.querySelector('.guest').setAttribute('style', 'display:none');
     } else {
-        document.querySelector('.user').setAttribute('style', 'display: none');
-        document.querySelector('.guest').setAttribute('style', 'display: inline');
+        document.querySelector('.user').setAttribute('style', 'display:none');
+        document.querySelector('.guest').setAttribute('style', 'display:block');
     }
 }

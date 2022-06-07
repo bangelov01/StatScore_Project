@@ -1,8 +1,14 @@
 ﻿namespace StatScore.Web.Infrastructure
 {
+    using System.Text;
+
+    using Microsoft.AspNetCore.Authentication.JwtBearer;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.IdentityModel.Tokens;
 
     using StatScore.Data;
+    using StatScore.Data.Models;
     using StatScore.Services;
     using StatScore.Services.Contracts;
 
@@ -21,14 +27,52 @@
             return app;
         }
 
-        public static WebApplicationBuilder AddTransient(this WebApplicationBuilder builder)
+        public static void RegisterTransient(this IServiceCollection services)
         {
-            builder.Services.AddTransient<IDataSeederService, DataSeederService>();
-            builder.Services.AddTransient<ILeagueService, LeagueService>();
-            builder.Services.AddTransient<IGameService, GameService>();
-            builder.Services.AddTransient<ITeamLeagueService, TeamLeagueService>();
-            builder.Services.AddTransient<IPlayerLeagueService, PlayerLeagueService>();
-            builder.Services.AddTransient<IAuthenticationService, AuthenticationService>();
+            services.AddTransient<IDataSeederService, DataSeederService>();
+            services.AddTransient<ILeagueService, LeagueService>();
+            services.AddTransient<IGameService, GameService>();
+            services.AddTransient<ITeamLeagueService, TeamLeagueService>();
+            services.AddTransient<IPlayerLeagueService, PlayerLeagueService>();
+            services.AddTransient<IAuthenticationService, AuthenticationService>();
+        }
+
+        public static void SetUpIdentityForDevelopment(this IServiceCollection services)
+        {
+            services.AddDefaultIdentity<User>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 1;
+            })
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<SSDbContext>();
+        }
+
+        public static WebApplicationBuilder AddAuthenticationWithJWT(this WebApplicationBuilder builder)
+        {
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+                       .AddJwtBearer(options =>
+                       {
+                           options.SaveToken = true;
+                           options.RequireHttpsMetadata = false;
+                           options.TokenValidationParameters = new TokenValidationParameters()
+                           {
+                               ValidateIssuer = true,
+                               ValidateAudience = true,
+                               ValidAudience = builder.Configuration["JWT:ValidAudience"],
+                               ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
+                               IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
+                           };
+
+                       });
 
             return builder;
         }

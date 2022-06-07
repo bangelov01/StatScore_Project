@@ -4,14 +4,14 @@ import { login } from "../api/data.js"
 const loginTemplate = (onSubmit) => html`
 <section id="login">
 <form id="register-form" @submit=${onSubmit}>
-    <div class="container mt-4">
+    <div class="container login fst-italic">
         <h1 class="display-4">Login</h1>
         <label for="username">Username</label>
         <input id="username" placeholder="Enter Username" name="username" type="text">
         <label for="password">Password</label>
         <input id="password" type="password" placeholder="Enter Password" name="password">
         <input type="submit" class="registerbtn button" value="Login">
-        <div class="container signin">
+        <div class="container reg">
             <p>Dont have an account?<a href="/register">Sign up</a>.</p>
         </div>  
     </div>

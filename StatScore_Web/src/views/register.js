@@ -5,8 +5,8 @@ import { register } from "../api/data.js"
 const registerTemplate = (onSubmit) => html`
 <section id="register">
 <form id="register-form" @submit=${onSubmit}>
-    <div class="container">
-        <h1 class="display-4">Register</h1>
+    <div class="container login">
+        <h1 class="display-4 fst-italic">Register</h1>
         <label for="username">Username</label>
         <input id="username" type="text" placeholder="Enter Username" name="username">
         <label for="email">Email</label>
@@ -16,7 +16,7 @@ const registerTemplate = (onSubmit) => html`
         <label for="repeatPass">Repeat Password</label>
         <input id="repeatPass" type="password" placeholder="Repeat Password" name="repeatPass">
         <input type="submit" class="registerbtn button" value="Register">
-        <div class="container signin">
+        <div class="container reg">
             <p>Already have an account?<a href="/login">Sign in</a>.</p>
         </div>
     </div>
@@ -47,7 +47,7 @@ export async function registerPage(ctx) {
                 throw new Error ("Passwords do not match!");
             }
 
-            const response = await register(username, email, password);
+            await register(username, email, password);
             ctx.setUpUserNav();
             alert("Registration successfull!")
             ctx.page.redirect("/login")

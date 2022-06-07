@@ -24,8 +24,16 @@ async function login(username, password) {
     sessionStorage.setItem("userToken", response.token);
     sessionStorage.setItem("userId", response.id);
     sessionStorage.setItem("username", response.userName);
+    sessionStorage.setItem("tokenExpiration", response.expiration);
 
     return response;
+}
+
+function logout(){
+
+    sessionStorage.removeItem("userToken");
+    sessionStorage.removeItem("userId");
+    sessionStorage.removeItem("username");
 }
 
 async function request(url, options) {
@@ -77,5 +85,6 @@ export {
     post,
     register,
     login,
+    logout,
     settings
 }
