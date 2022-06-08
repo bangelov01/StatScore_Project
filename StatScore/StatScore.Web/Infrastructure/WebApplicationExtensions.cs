@@ -31,9 +31,7 @@
         {
             services.AddTransient<IDataSeederService, DataSeederService>();
             services.AddTransient<ILeagueService, LeagueService>();
-            services.AddTransient<IGameService, GameService>();
-            services.AddTransient<ITeamLeagueService, TeamLeagueService>();
-            services.AddTransient<IPlayerLeagueService, PlayerLeagueService>();
+            services.AddTransient<IStatisticsService, StatisticsService>();
             services.AddTransient<IAuthenticationService, AuthenticationService>();
         }
 

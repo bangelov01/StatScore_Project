@@ -1,33 +1,45 @@
 ﻿namespace StatScore.Web.Controllers
 {
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-
     using StatScore.Services.Contracts;
 
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class TeamsController : ControllerBase
     {
-        private readonly ITeamLeagueService teamLeagueService;
+        private readonly IStatisticsService statisticsService;
 
-        public TeamsController(ITeamLeagueService teamLeagueService)
+        public TeamsController(IStatisticsService statisticsService)
         {
-            this.teamLeagueService = teamLeagueService;
+            this.statisticsService = statisticsService;
         }
 
-        [HttpGet("Top/{count}")]
-        public async Task<IActionResult> GetTopTeams(int count)
+        [HttpGet("League/{id}")]
+        public async Task<IActionResult> TeamsTable(int id)
         {
             try
             {
-                var teams = await teamLeagueService.TopTeamsAcrossLeagues(count);
+                var stats = await statisticsService.TeamsForLeague(id);
+
+                return Ok(stats);
+            }
+            catch
+            {
+                return StatusCode(500, "Internal server error!");
+            }
+        }
+
+        [HttpGet("Overall/{count}")]
+        public async Task<IActionResult> TopTeamsOverall(int count)
+        {
+            try
+            {
+                var teams = await statisticsService.TopTeamsAcrossLeagues(count);
 
                 return Ok(teams);
             }
             catch
             {
-                //can log exception
                 return StatusCode(500, "Internal server error!");
             }
         }

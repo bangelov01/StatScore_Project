@@ -6,7 +6,6 @@
 
     using StatScore.Data;
     using StatScore.Services.Contracts;
-    using StatScore.Services.Models;
     using StatScore.Services.Models.League;
     using StatScore.Services.Models.League.Base;
 
@@ -18,21 +17,6 @@
         {
             this.dbContext = dbContext;
         }
-
-        public async Task<IEnumerable<TeamLeagueStatisticServiceModel>> LeagueStats(int id)
-               => await dbContext
-               .LeagueStats
-               .Where(ls => ls.LeagueId == id)
-               .Select(ls => new TeamLeagueStatisticServiceModel
-               {
-                   TeamName = ls.Team.Name,
-                   Wins = ls.Wins,
-                   Draws = ls.Draws,
-                   Losses = ls.Losses
-               })
-               .OrderByDescending(o => o.Wins)
-               .ThenByDescending(o => o.Draws)
-               .ToArrayAsync();
 
         public async Task<LeagueInfoServiceModel> LeagueFullInfo(int id)
             => await dbContext

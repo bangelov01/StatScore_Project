@@ -1,26 +1,25 @@
 ﻿namespace StatScore.Web.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
-
     using StatScore.Services.Contracts;
 
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class PlayersController : ControllerBase
     {
-        private readonly IPlayerLeagueService playerLeagueService;
+        private readonly IStatisticsService statisticsService;
 
-        public PlayersController(IPlayerLeagueService playerLeagueService)
+        public PlayersController(IStatisticsService statisticsService)
         {
-            this.playerLeagueService = playerLeagueService;
+            this.statisticsService = statisticsService;
         }
 
-        [HttpGet("Top/{count}")]
-        public async Task<IActionResult> GetTopPlayers(int count)
+        [HttpGet("Overall/{count}")]
+        public async Task<IActionResult> TopPlayersOverall(int count)
         {
             try
             {
-                var players = await playerLeagueService.TopPlayersAccrossLeagues(count);
+                var players = await statisticsService.TopPlayersAccrossLeagues(count);
 
                 return Ok(players);
             }

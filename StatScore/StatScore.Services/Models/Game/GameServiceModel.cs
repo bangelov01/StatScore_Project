@@ -1,4 +1,4 @@
-﻿namespace StatScore.Services.Models
+﻿namespace StatScore.Services.Models.Game
 {
     public class GameServiceModel
     {

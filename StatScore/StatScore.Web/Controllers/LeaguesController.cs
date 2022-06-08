@@ -3,15 +3,17 @@
     using Microsoft.AspNetCore.Mvc;
     using StatScore.Services.Contracts;
 
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class LeaguesController : ControllerBase
     {
         private readonly ILeagueService leagueService;
+        private readonly IStatisticsService statisticsService;
 
-        public LeaguesController(ILeagueService leagueService)
+        public LeaguesController(ILeagueService leagueService, IStatisticsService statisticsService)
         {
             this.leagueService = leagueService;
+            this.statisticsService = statisticsService;
         }
 
         [HttpGet]
@@ -37,22 +39,6 @@
                 var league = await leagueService.LeagueFullInfo(id);
 
                 return Ok(league);
-            }
-            catch
-            {
-                return StatusCode(500, "Internal server error!");
-            }
-        }
-
-
-        [HttpGet("Stats/{id}")]
-        public async Task<IActionResult> LeagueStats(int id)
-        {
-            try
-            {
-                var stats = await leagueService.LeagueStats(id);
-
-                return Ok(stats);
             }
             catch
             {

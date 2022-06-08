@@ -1,18 +1,17 @@
 ﻿namespace StatScore.Web.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
-
     using StatScore.Services.Contracts;
 
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class GamesController : ControllerBase
     {
-        private readonly IGameService gameService;
+        private readonly IStatisticsService statisticsService;
 
-        public GamesController(IGameService gameService)
+        public GamesController(IStatisticsService statisticsService)
         {
-            this.gameService = gameService;
+            this.statisticsService = statisticsService;
         }
 
         [HttpGet("League/{id}")]
@@ -20,7 +19,7 @@
         {
             try
             {
-                var games = await gameService.GamesForLeague(id);
+                var games = await statisticsService.GamesForLeague(id);
 
                 return Ok(games);
             }

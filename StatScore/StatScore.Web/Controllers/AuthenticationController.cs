@@ -5,7 +5,7 @@
     using StatScore.Services.Contracts;
     using StatScore.Services.Models.Authentication.Import;
 
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class AuthenticationController : ControllerBase
     {

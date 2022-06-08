@@ -1,7 +1,7 @@
 import page from "../node_modules/page/page.mjs"
 import { render } from "../node_modules/lit-html/lit-html.js"
 
-import { setUpUserNav } from "./navigation/navigation.js"
+import { setUpUserNav, SetLeaguesDropdown } from "./navigation/navigation.js"
 import { logout } from "./api/data.js"
 
 import { registerPage } from "./views/register.js"
@@ -17,6 +17,7 @@ page("/login", middleWareRender, loginPage);
 page("/league/:id", middleWareRender, leaguePage);
 
 setUpUserNav();
+SetLeaguesDropdown();
 page.start();
 
 

@@ -12,14 +12,14 @@ async function post(url, data) {
 
 async function register(username, email, password) {
 
-    const response = await post(settings.host + "/api/Authentication/Register", {username, email, password});
+    const response = await post(settings.host + "/Authentication/Register", {username, email, password});
 
     return response;
 }
 
 async function login(username, password) {
 
-    const response = await post(settings.host + "/api/Authentication/Login", {username, password});
+    const response = await post(settings.host + "/Authentication/Login", {username, password});
 
     sessionStorage.setItem("userToken", response.token);
     sessionStorage.setItem("userId", response.id);
