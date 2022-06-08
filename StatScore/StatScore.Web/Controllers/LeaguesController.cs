@@ -5,11 +5,11 @@
 
     [Route("api/[controller]")]
     [ApiController]
-    public class LeagueController : ControllerBase
+    public class LeaguesController : ControllerBase
     {
         private readonly ILeagueService leagueService;
 
-        public LeagueController(ILeagueService leagueService)
+        public LeaguesController(ILeagueService leagueService)
         {
             this.leagueService = leagueService;
         }

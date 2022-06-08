@@ -1,4 +1,4 @@
-import { getTopTeams, getTopPlayers } from "../api/data.js"
+import { getTopTeams, getTopPlayers, getLeaguesBasicInfo } from "../api/data.js"
 import { topTemplate } from "../templates/topTemplate.js"
 
 export async function homePage(ctx) {
@@ -8,8 +8,6 @@ export async function homePage(ctx) {
 
     const teams = await getTopTeams(numberOfTeams);
     const players = await getTopPlayers(numberOfPlayers);
-
-    console.log(players)
 
     ctx.render(topTemplate(teams, players));
 }

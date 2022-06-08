@@ -150,7 +150,8 @@
                     TeamId = 1,
                     Wins = 3,
                     Draws = 0,
-                    Losses = 1
+                    Losses = 1,
+                    Points = 9
                 },
                 new LeagueStats
                 {
@@ -158,7 +159,8 @@
                     TeamId = 2,
                     Wins = 1,
                     Draws = 2,
-                    Losses = 1
+                    Losses = 1,
+                    Points = 5
                 },
                 new LeagueStats
                 {
@@ -166,7 +168,8 @@
                     TeamId = 3,
                     Wins = 4,
                     Draws = 0,
-                    Losses = 0
+                    Losses = 0,
+                    Points = 12
                 },
                 new LeagueStats
                 {
@@ -174,7 +177,8 @@
                     TeamId = 4,
                     Wins = 2,
                     Draws = 1,
-                    Losses = 1
+                    Losses = 1,
+                    Points = 7
                 },
                 new LeagueStats
                 {
@@ -182,7 +186,8 @@
                     TeamId = 1,
                     Wins = 1,
                     Draws = 2,
-                    Losses = 1
+                    Losses = 1,
+                    Points = 5
                 },
                 new LeagueStats
                 {
@@ -190,7 +195,8 @@
                     TeamId = 4,
                     Wins = 1,
                     Draws = 1,
-                    Losses = 2
+                    Losses = 2,
+                    Points = 4
                 },
                 new LeagueStats
                 {
@@ -198,7 +204,8 @@
                     TeamId = 3,
                     Wins = 4,
                     Draws = 0,
-                    Losses = 0
+                    Losses = 0,
+                    Points = 12
                 },
                 new LeagueStats
                 {
@@ -206,7 +213,8 @@
                     TeamId = 2,
                     Wins = 0,
                     Draws = 4,
-                    Losses = 0
+                    Losses = 0,
+                    Points = 4
                 },
                 new LeagueStats
                 {
@@ -214,7 +222,8 @@
                     TeamId = 5,
                     Wins = 4,
                     Draws = 0,
-                    Losses = 0
+                    Losses = 0,
+                    Points = 12
                 },
                 new LeagueStats
                 {
@@ -222,7 +231,8 @@
                     TeamId = 6,
                     Wins = 3,
                     Draws = 1,
-                    Losses = 0
+                    Losses = 0,
+                    Points = 10
                 },
                 new LeagueStats
                 {
@@ -230,7 +240,8 @@
                     TeamId = 7,
                     Wins = 1,
                     Draws = 2,
-                    Losses = 1
+                    Losses = 1,
+                    Points = 5
                 },
                 new LeagueStats
                 {
@@ -238,7 +249,8 @@
                     TeamId = 8,
                     Wins = 0,
                     Draws = 3,
-                    Losses = 1
+                    Losses = 1,
+                    Points = 3
                 },
             });
 

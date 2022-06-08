@@ -51,6 +51,9 @@ const topTemplate = (teams, players) => html`
                      </tbody>
                   </table>
                </div>
+               <div class="bottom card-body text-center">
+                  <h5>To view more details - <a href="/login">Log In now.</a></h5>
+               </div>
             </div>
          </div>
       </div>

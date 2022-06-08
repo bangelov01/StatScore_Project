@@ -11,7 +11,6 @@
         {
             this.Players = new HashSet<Player>();
             this.LeagueStats = new HashSet<LeagueStats>();
-            this.Favorites = new HashSet<Favorites>();
             this.HomeGames = new HashSet<Game>();
             this.AwayGames = new HashSet<Game>();
         }
@@ -34,7 +33,6 @@
 
         public virtual ICollection<LeagueStats> LeagueStats { get; init; }
 
-        public virtual ICollection<Favorites> Favorites { get; init; }
 
         [InverseProperty("HomeTeam")]
         public virtual ICollection<Game> HomeGames { get; init; }

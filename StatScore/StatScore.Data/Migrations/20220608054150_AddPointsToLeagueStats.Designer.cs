@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StatScore.Data;
 
@@ -11,9 +12,10 @@ using StatScore.Data;
 namespace StatScore.Data.Migrations
 {
     [DbContext(typeof(SSDbContext))]
-    partial class SSDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220608054150_AddPointsToLeagueStats")]
+    partial class AddPointsToLeagueStats
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -175,6 +177,21 @@ namespace StatScore.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Countries");
+                });
+
+            modelBuilder.Entity("StatScore.Data.Models.Favorites", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("TeamId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "TeamId");
+
+                    b.HasIndex("TeamId");
+
+                    b.ToTable("Favorites");
                 });
 
             modelBuilder.Entity("StatScore.Data.Models.Game", b =>
@@ -493,6 +510,25 @@ namespace StatScore.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("StatScore.Data.Models.Favorites", b =>
+                {
+                    b.HasOne("StatScore.Data.Models.Team", "Team")
+                        .WithMany("Favorites")
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StatScore.Data.Models.User", "User")
+                        .WithMany("Favorites")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Team");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("StatScore.Data.Models.Game", b =>
                 {
                     b.HasOne("StatScore.Data.Models.Team", "AwayTeam")
@@ -603,11 +639,18 @@ namespace StatScore.Data.Migrations
                 {
                     b.Navigation("AwayGames");
 
+                    b.Navigation("Favorites");
+
                     b.Navigation("HomeGames");
 
                     b.Navigation("LeagueStats");
 
                     b.Navigation("Players");
+                });
+
+            modelBuilder.Entity("StatScore.Data.Models.User", b =>
+                {
+                    b.Navigation("Favorites");
                 });
 #pragma warning restore 612, 618
         }

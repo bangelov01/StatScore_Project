@@ -24,7 +24,8 @@
                      TeamName = g.Key,
                      Wins = g.Sum(s => s.Wins),
                      Draws = g.Sum(s => s.Draws),
-                     Losses = g.Sum(s => s.Losses)
+                     Losses = g.Sum(s => s.Losses),
+                     Points = g.Sum(s => s.Points),
                  })
                  .OrderByDescending(o => o.Wins)
                  .ThenByDescending(o => o.Draws)

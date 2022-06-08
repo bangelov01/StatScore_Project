@@ -21,6 +21,19 @@ h4 {
     margin-bottom: 20px;
 }
 
+.bottom {
+    padding:0.5%;
+}
+
+.bottom h5{
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.bottom a{
+    font-style: italic;
+}
+
 .card:hover {
     transform: scale(1.2);
-  }
+}
