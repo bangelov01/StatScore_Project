@@ -6,9 +6,9 @@
 
     public interface IStatisticsService
     {
-        public Task<IEnumerable<PlayerLeagueServiceModel>> TopPlayersAccrossLeagues(int count);
+        public Task<IEnumerable<PlayerLeagueServiceModel>> TopPlayersAccrossLeagues();
 
-        public Task<IEnumerable<TeamLeagueBaseModel>> TopTeamsAcrossLeagues(int count);
+        public Task<IEnumerable<TeamLeagueBaseModel>> TopTeamsAcrossLeagues();
 
         public Task<IEnumerable<TeamLeagueServiceModel>> TeamsForLeague(int id);
 

@@ -1,4 +1,4 @@
-import { getLeagueFullInfo, getLeagueStats } from "../api/data.js"
+import { getLeagueFullInfo, getLeagueStats, getGamesForLeague} from "../api/data.js"
 import { leagueTemplate } from "../templates/leagueTemplate.js"
 
 
@@ -10,6 +10,7 @@ export async function leaguePage(ctx) {
 
     const leagueInfo = await getLeagueFullInfo(leagueId);
     const leagueStats = await getLeagueStats(leagueId);
+    const leagueGames = await getGamesForLeague(leagueId);
 
-    ctx.render(leagueTemplate(leagueInfo, leagueStats))
+    ctx.render(leagueTemplate(leagueInfo, leagueStats, leagueGames))
 }

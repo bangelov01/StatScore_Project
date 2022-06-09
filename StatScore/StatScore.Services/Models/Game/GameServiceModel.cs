@@ -12,7 +12,7 @@
         public int AwayTeamPasses { get; init; }
         public int HomeTeamFauls { get; init; }
         public int AwayTeamFauls { get; init; }
-        public DateTime Date { get; init; }
-
+        public string HomeLogoURL { get; init; }
+        public string AwayLogoURL { get; init; }
     }
 }

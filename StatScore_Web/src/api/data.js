@@ -7,12 +7,12 @@ export const register = api.register;
 export const login = api.login;
 export const logout = api.logout;
 
-async function getTopTeams(count) {
-    return await api.get(host + "/Teams/Overall/" + count);
+async function getTopTeams() {
+    return await api.get(host + "/Teams/Overall/");
 }
 
-async function getTopPlayers(count) {
-    return await api.get(host + "/Players/Overall/" + count);
+async function getTopPlayers() {
+    return await api.get(host + "/Players/Overall/");
 }
 
 async function getLeagueStats(id) {
@@ -27,10 +27,15 @@ async function getLeagueFullInfo(id) {
     return await api.get(host + "/Leagues/" + id);
 }
 
+async function getGamesForLeague(id) {
+    return await api.get(host + "/Games/League/" + id);
+}
+
 export {
     getTopTeams,
     getTopPlayers,
     getLeagueFullInfo,
     getLeagueStats,
-    getLeaguesBasicInfo
+    getLeaguesBasicInfo,
+    getGamesForLeague
 }

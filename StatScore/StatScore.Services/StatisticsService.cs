@@ -20,6 +20,7 @@
            => await dbContext
             .Games
             .Where(g => g.LeagueId == id)
+            .OrderByDescending(o => o.Date)
             .Select(g => new GameServiceModel
             {
                 HomeTeamName = g.HomeTeam.Name,
@@ -32,8 +33,10 @@
                 AwayTeamFauls = g.AwayTeamFauls,
                 HomeTeamPasses = g.HomeTeamPasses,
                 AwayTeamPasses = g.AwayTeamPasses,
-                Date = g.Date
+                HomeLogoURL = g.HomeTeam.LogoURL,
+                AwayLogoURL = g.AwayTeam.LogoURL,
             })
+            .Take(5)
             .ToArrayAsync();
 
         public async Task<IEnumerable<TeamLeagueServiceModel>> TeamsForLeague(int id)
@@ -46,7 +49,6 @@
                         Wins = ls.Wins,
                         Draws = ls.Draws,
                         Losses = ls.Losses,
-                        Points = ls.Points,
                         logoURL = ls.Team.LogoURL,
                         GoalsAquired = ls.Team.HomeGames.Where(hg => hg.LeagueId == id).Sum(s => s.HomeTeamGoals)
                             + ls.Team.AwayGames.Where(hg => hg.LeagueId == id).Sum(s => s.AwayTeamGoals),
@@ -57,7 +59,7 @@
                     .ThenByDescending(o => o.Draws)
                     .ToArrayAsync();
 
-        public async Task<IEnumerable<PlayerLeagueServiceModel>> TopPlayersAccrossLeagues(int count)
+        public async Task<IEnumerable<PlayerLeagueServiceModel>> TopPlayersAccrossLeagues()
             => await dbContext
                .PlayerLeagueStats
                .GroupBy(g => new { g.Player.FirstName, g.Player.LastName })
@@ -72,10 +74,10 @@
                })
                .OrderByDescending(o => o.Goals)
                .ThenByDescending(o => o.Assists)
-               .Take(count)
+               .Take(4)
                .ToArrayAsync();
 
-        public async Task<IEnumerable<TeamLeagueBaseModel>> TopTeamsAcrossLeagues(int count)
+        public async Task<IEnumerable<TeamLeagueBaseModel>> TopTeamsAcrossLeagues()
             => await dbContext
                  .LeagueStats
                  .GroupBy(x => x.Team.Name)
@@ -88,7 +90,7 @@
                  })
                  .OrderByDescending(o => o.Wins)
                  .ThenByDescending(o => o.Draws)
-                 .Take(count)
+                 .Take(4)
                  .ToArrayAsync();
     }
 }

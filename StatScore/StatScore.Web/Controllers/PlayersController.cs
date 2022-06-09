@@ -14,12 +14,12 @@
             this.statisticsService = statisticsService;
         }
 
-        [HttpGet("Overall/{count}")]
-        public async Task<IActionResult> TopPlayersOverall(int count)
+        [HttpGet("Overall")]
+        public async Task<IActionResult> TopPlayersOverall()
         {
             try
             {
-                var players = await statisticsService.TopPlayersAccrossLeagues(count);
+                var players = await statisticsService.TopPlayersAccrossLeagues();
 
                 return Ok(players);
             }

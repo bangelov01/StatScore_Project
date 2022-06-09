@@ -29,12 +29,12 @@
             }
         }
 
-        [HttpGet("Overall/{count}")]
-        public async Task<IActionResult> TopTeamsOverall(int count)
+        [HttpGet("Overall")]
+        public async Task<IActionResult> TopTeamsOverall()
         {
             try
             {
-                var teams = await statisticsService.TopTeamsAcrossLeagues(count);
+                var teams = await statisticsService.TopTeamsAcrossLeagues();
 
                 return Ok(teams);
             }

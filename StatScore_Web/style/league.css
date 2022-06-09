@@ -7,10 +7,17 @@
     margin-top: -40px;
 }
 
-.cards-league .card{
+.cards-league .league{
     width: 60rem;
     margin: auto;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+}
+
+.cards-league .game{
+    width: 50rem;
+    margin: auto;
+    margin-top: 25px;
     border-radius: 20px;
 }
 
@@ -40,4 +47,9 @@
 .span-icon {
     margin-left: 10px;
     margin-right: -20px;
+}
+
+.table-logo {
+    width: 23px;
+    height:30px;
 }

@@ -151,7 +151,6 @@
                     Wins = 3,
                     Draws = 0,
                     Losses = 1,
-                    Points = 9
                 },
                 new LeagueStats
                 {
@@ -160,7 +159,6 @@
                     Wins = 1,
                     Draws = 2,
                     Losses = 1,
-                    Points = 5
                 },
                 new LeagueStats
                 {
@@ -169,7 +167,6 @@
                     Wins = 4,
                     Draws = 0,
                     Losses = 0,
-                    Points = 12
                 },
                 new LeagueStats
                 {
@@ -178,7 +175,6 @@
                     Wins = 2,
                     Draws = 1,
                     Losses = 1,
-                    Points = 7
                 },
                 new LeagueStats
                 {
@@ -187,7 +183,6 @@
                     Wins = 1,
                     Draws = 2,
                     Losses = 1,
-                    Points = 5
                 },
                 new LeagueStats
                 {
@@ -196,7 +191,6 @@
                     Wins = 1,
                     Draws = 1,
                     Losses = 2,
-                    Points = 4
                 },
                 new LeagueStats
                 {
@@ -205,7 +199,6 @@
                     Wins = 2,
                     Draws = 0,
                     Losses = 2,
-                    Points = 6
                 },
                 new LeagueStats
                 {
@@ -214,7 +207,6 @@
                     Wins = 4,
                     Draws = 0,
                     Losses = 0,
-                    Points = 12
                 },
                 new LeagueStats
                 {
@@ -223,7 +215,6 @@
                     Wins = 4,
                     Draws = 0,
                     Losses = 0,
-                    Points = 12
                 },
                 new LeagueStats
                 {
@@ -232,7 +223,6 @@
                     Wins = 3,
                     Draws = 1,
                     Losses = 0,
-                    Points = 10
                 },
                 new LeagueStats
                 {
@@ -241,7 +231,6 @@
                     Wins = 1,
                     Draws = 2,
                     Losses = 1,
-                    Points = 5
                 },
                 new LeagueStats
                 {
@@ -250,7 +239,6 @@
                     Wins = 0,
                     Draws = 3,
                     Losses = 1,
-                    Points = 3
                 },
             });
 

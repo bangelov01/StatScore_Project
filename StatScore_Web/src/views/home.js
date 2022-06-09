@@ -3,11 +3,8 @@ import { topTemplate } from "../templates/topTemplate.js"
 
 export async function homePage(ctx) {
 
-    const numberOfTeams = 4;
-    const numberOfPlayers = 4;
-
-    const teams = await getTopTeams(numberOfTeams);
-    const players = await getTopPlayers(numberOfPlayers);
+    const teams = await getTopTeams();
+    const players = await getTopPlayers();
 
     ctx.render(topTemplate(teams, players));
 }
