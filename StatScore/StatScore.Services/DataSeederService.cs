@@ -1,20 +1,57 @@
 ﻿namespace StatScore.Services
 {
     using System.Threading.Tasks;
-
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Options;
     using StatScore.Data;
 
     using StatScore.Data.Models;
     using StatScore.Services.Contracts;
+    using StatScore.Services.Models;
+
+    using static StatScore.Services.Models.Authentication.UserRoleModel;
 
     public class DataSeederService : IDataSeederService
     {
         private readonly SSDbContext dbContext;
+        private readonly UserManager<User> userManager;
+        private readonly RoleManager<IdentityRole> roleManager;
+        private readonly AppSettingsModel adminDetails;
 
-        public DataSeederService(SSDbContext dbContext)
+        public DataSeederService(SSDbContext dbContext,
+            UserManager<User> userManager,
+            RoleManager<IdentityRole> roleManager,
+            IOptions<AppSettingsModel> adminDetails)
         {
             this.dbContext = dbContext;
+            this.userManager = userManager;
+            this.roleManager = roleManager;
+            this.adminDetails = adminDetails.Value;
+        }
+
+        public async Task SeedAdministrator()
+        {
+            if (await roleManager.RoleExistsAsync(AdminRole) 
+                && await roleManager.RoleExistsAsync(UserRole))
+            {
+                return;
+            }
+
+            var adminRole = new IdentityRole { Name = AdminRole };
+            var uRole = new IdentityRole { Name = UserRole };
+
+            await roleManager.CreateAsync(adminRole);
+            await roleManager.CreateAsync(uRole);
+
+            var admin = new User
+            {
+                Email = adminDetails.Email,
+                UserName = adminDetails.Username
+            };
+
+            await userManager.CreateAsync(admin, adminDetails.Password);
+            await userManager.AddToRoleAsync(admin, adminRole.Name);
         }
 
         public async Task SeedCountry()

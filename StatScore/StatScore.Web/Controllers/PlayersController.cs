@@ -1,5 +1,6 @@
 ﻿namespace StatScore.Web.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using StatScore.Services.Contracts;
 

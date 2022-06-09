@@ -86,6 +86,8 @@
         {
             var seeder = provider.GetRequiredService<IDataSeederService>();
 
+            await seeder.SeedAdministrator();
+
             await seeder.SeedCountry();
 
             await seeder.SeedLeagues();

@@ -2,12 +2,18 @@ using Microsoft.EntityFrameworkCore;
 
 using StatScore.Web.Infrastructure;
 using StatScore.Data;
+using StatScore.Services.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<SSDbContext>(options =>
     options.UseSqlServer(connectionString));
+
+builder.Services.Configure<AppSettingsModel>(
+    builder
+    .Configuration
+    .GetSection("AdministrationDetails"));
 
 builder.Services.AddControllers();
 

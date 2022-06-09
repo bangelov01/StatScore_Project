@@ -2,6 +2,7 @@
 {
     public interface IDataSeederService
     {
+        public Task SeedAdministrator();
         public Task SeedCountry();
         public Task SeedGames();
         public Task SeedTeams();

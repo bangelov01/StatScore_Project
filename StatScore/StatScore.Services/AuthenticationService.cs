@@ -15,6 +15,8 @@
     using StatScore.Services.Models.Authentication.Export;
     using StatScore.Services.Models.Authentication.Import;
 
+    using static StatScore.Services.Models.Authentication.UserRoleModel;
+
     public class AuthenticationService : IAuthenticationService
     {
         private readonly UserManager<User> userManager;
@@ -91,9 +93,10 @@
                 UserName = model.Username
             };
 
-            var result = await userManager.CreateAsync(user, model.Password);
+            var resultCreate = await userManager.CreateAsync(user, model.Password);
+            await userManager.AddToRoleAsync(user, UserRole);
 
-            if (!result.Succeeded)
+            if (!resultCreate.Succeeded)
             {
                 return new ResponseModel
                 {
