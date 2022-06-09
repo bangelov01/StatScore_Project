@@ -47,6 +47,7 @@
                         Draws = ls.Draws,
                         Losses = ls.Losses,
                         Points = ls.Points,
+                        logoURL = ls.Team.LogoURL,
                         GoalsAquired = ls.Team.HomeGames.Where(hg => hg.LeagueId == id).Sum(s => s.HomeTeamGoals)
                             + ls.Team.AwayGames.Where(hg => hg.LeagueId == id).Sum(s => s.AwayTeamGoals),
                         GoalsConceded = ls.Team.AwayGames.Where(hg => hg.LeagueId == id).Sum(s => s.HomeTeamGoals)

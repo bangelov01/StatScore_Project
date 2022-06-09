@@ -1,0 +1,43 @@
+.cards-league {
+    display:grid;
+    text-align: center;
+    margin-top: 10px;
+    width: auto;
+    margin: auto;
+    margin-top: -40px;
+}
+
+.cards-league .card{
+    width: 60rem;
+    margin: auto;
+    margin-bottom: 50px;
+    border-radius: 20px;
+}
+
+.league-h4 {
+    font-size: 40px;
+    margin-top: 20px;
+}
+
+.info-h4 span{
+    font-size: 20px;
+    margin-right: 50px;
+}
+
+.league-h4 span {
+    color: yellowgreen;
+}
+
+.img-league{
+    margin: auto;
+    width: 750px;
+    height: 340px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+}
+
+.span-icon {
+    margin-left: 10px;
+    margin-right: -20px;
+}

@@ -64,7 +64,7 @@ const topTemplate = (teams, players) => html`
 const topTeamsTemplate = (team, index) => html`
 <tr>
    <th scope="row">${++index}</th>
-   <td>${team.teamName}</td>
+   <td><span>${team.teamName}</span></td>
    <td>${team.wins}</td>
    <td>${team.draws}</td>
    <td>${team.losses}</td>

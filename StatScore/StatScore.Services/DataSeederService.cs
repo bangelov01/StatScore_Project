@@ -45,7 +45,7 @@
                     Name = "Premier League",
                     CountryId = 1,
                     Season = 2022,
-                    LogoURL = "https://cdn.freebiesupply.com/images/large/2x/premier-league-logo-png-transparent.png"
+                    LogoURL = "https://blog.aphrodite1994.com/wp-content/uploads/2017/09/premier-league-logo-2017.jpg"
                 },
                 new League
                 {
@@ -59,7 +59,7 @@
                     Name = "FA Cup",
                     CountryId = 1,
                     Season = 2022,
-                    LogoURL = "https://seeklogo.com/images/E/emirates-fa-cup-logo-4A51E1714E-seeklogo.com.png"
+                    LogoURL = "https://www.nicepng.com/png/detail/58-587263_mciman-city-man-city-fa-cup-logo-png.png"
                 }
             });
 
@@ -202,19 +202,19 @@
                 {
                     LeagueId = 3,
                     TeamId = 3,
-                    Wins = 4,
+                    Wins = 2,
                     Draws = 0,
-                    Losses = 0,
-                    Points = 12
+                    Losses = 2,
+                    Points = 6
                 },
                 new LeagueStats
                 {
                     LeagueId = 3,
                     TeamId = 2,
-                    Wins = 0,
-                    Draws = 4,
+                    Wins = 4,
+                    Draws = 0,
                     Losses = 0,
-                    Points = 4
+                    Points = 12
                 },
                 new LeagueStats
                 {
