@@ -35,8 +35,8 @@ export const leagueTemplate = (leagueInfo, leagueStats, leagueGames) => html`
    <table class="table table-hover">
    <thead>
       <tr>
-         <th scope="col">Home</th>
-         <th scope="col">Away</th>
+         <th scope="col"><h5>Home</h5></th>
+         <th scope="col"><h5>Away</h5></th>
       </tr>
    </thead>
    <tbody>
@@ -66,7 +66,7 @@ const gamesTemplate = (game) => html`
 <tr>
    <td style="font-size: 20px; font-style: italic;">
       <div style="width: 110%; font-size: 20px">
-         <span style="float: left; font-size: 20px">${game.homeTeamName}</span>
+         <span style="float: left; font-size: 20px;"><h5>${game.homeTeamName}</h5></span>
          <span style="float: right;"><img src="${game.homeLogoURL}" class="table-logo" style="margin-right: 10px; margin-bottom: 5px;"></img>${game.homeTeamGoals}</span>
       </div>
       <div class="game-details" style="position: absolute; left: 10rem; margin-top: 40px;">
@@ -78,14 +78,14 @@ const gamesTemplate = (game) => html`
    <td style="font-size: 20px; font-style: italic;">
       <span style="margin-left:15px; font-size: 20px">:</span>
       <div style="width: 90%; float:right; font-size: 20px">
-         <span style="float: right;">${game.awayTeamName}</span>
+         <span style="float: right;"><h5>${game.awayTeamName}</h5></span>
          <span style="float: left;">${game.awayTeamGoals}<img src="${game.awayLogoURL}" style="margin-left: 10px; margin-bottom: 5px;"class="table-logo"></img></span>
       </div>
       <div class="game-details" style="margin-top: 12px;">
          <p>Shots: <span>${game.awayTeamShots}</span></p>
          <p>Passes: <span>${game.awayTeamPasses}</span></p>
          <p>Fauls: <span>${game.awayTeamFauls}</span></p>
-      </div>
+      </div>         
    </td>
 </tr>
 `

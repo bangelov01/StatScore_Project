@@ -3,9 +3,10 @@
     using Microsoft.EntityFrameworkCore;
     using StatScore.Data;
     using StatScore.Services.Contracts;
-    using StatScore.Services.Models.Game;
-    using StatScore.Services.Models.Statistics;
     using StatScore.Services.Models.Statistics.Base;
+    using StatScore.Services.Models.Statistics.Game;
+    using StatScore.Services.Models.Statistics.Player;
+    using StatScore.Services.Models.Statistics.Team;
 
     public class StatisticsService : IStatisticsService
     {
@@ -39,6 +40,24 @@
             .Take(5)
             .ToArrayAsync();
 
+        public async Task<IEnumerable<PlayerLeagueServiceModel>> PlayersForLeague(int id)
+            => await dbContext
+            .PlayerLeagueStats
+            .Where(pl => pl.LeagueId == id)
+            .Select(pl => new PlayerLeagueServiceModel
+            {
+                FirstName = pl.Player.FirstName,
+                LastName = pl.Player.LastName,
+                IsInjured = pl.Player.IsInjured,
+                Position = pl.Player.Position,
+                Goals = pl.Goals,
+                Assists = pl.Assists,
+                Appearences = pl.Appearences,
+                TeamLogo = pl.Player.Team.LogoURL
+            })
+            .OrderByDescending(o => o.Goals)
+            .ToArrayAsync();
+
         public async Task<IEnumerable<TeamLeagueServiceModel>> TeamsForLeague(int id)
             => await dbContext
                     .LeagueStats
@@ -59,18 +78,17 @@
                     .ThenByDescending(o => o.Draws)
                     .ToArrayAsync();
 
-        public async Task<IEnumerable<PlayerLeagueServiceModel>> TopPlayersAccrossLeagues()
+        public async Task<IEnumerable<PlayerLeagueBaseModel>> TopPlayersAccrossLeagues()
             => await dbContext
                .PlayerLeagueStats
                .GroupBy(g => new { g.Player.FirstName, g.Player.LastName })
-               .Select(pl => new PlayerLeagueServiceModel
+               .Select(pl => new PlayerLeagueBaseModel
                {
                    FirstName = pl.Key.FirstName,
                    LastName = pl.Key.LastName,
                    Goals = pl.Sum(s => s.Goals),
                    Assists = pl.Sum(s => s.Assists),
                    Appearences = pl.Sum(s => s.Appearences)
-
                })
                .OrderByDescending(o => o.Goals)
                .ThenByDescending(o => o.Assists)

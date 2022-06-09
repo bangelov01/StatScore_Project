@@ -20,15 +20,12 @@
     public class AuthenticationService : IAuthenticationService
     {
         private readonly UserManager<User> userManager;
-        private readonly RoleManager<IdentityRole> roleManager;
         private readonly IConfiguration configuration;
 
         public AuthenticationService(UserManager<User> userManager,
-            RoleManager<IdentityRole> roleManager,
             IConfiguration configuration)
         {
             this.userManager = userManager;
-            this.roleManager = roleManager;
             this.configuration = configuration;
         }
 

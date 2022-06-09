@@ -1,7 +1,6 @@
-﻿namespace StatScore.Services.Models.Statistics
+﻿namespace StatScore.Services.Models.Statistics.Base
 {
-
-    public class PlayerLeagueServiceModel
+    public class PlayerLeagueBaseModel
     {
         public string FirstName { get; init; }
         public string LastName { get; init; }

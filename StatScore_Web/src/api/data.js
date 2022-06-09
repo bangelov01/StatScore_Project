@@ -31,11 +31,16 @@ async function getGamesForLeague(id) {
     return await api.get(host + "/Games/League/" + id);
 }
 
+async function getPlayersForLeague(id) {
+    return await api.get(host + "/Players/League/" + id);
+}
+
 export {
     getTopTeams,
     getTopPlayers,
     getLeagueFullInfo,
     getLeagueStats,
     getLeaguesBasicInfo,
-    getGamesForLeague
+    getGamesForLeague,
+    getPlayersForLeague
 }
