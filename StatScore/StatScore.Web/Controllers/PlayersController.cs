@@ -3,7 +3,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using StatScore.Services.Contracts;
-
+    using StatScore.Services.Models.Statistics.Player;
     using static StatScore.Services.Models.Authentication.UserRoleModel;
 
     [Authorize(Roles = UserRole)]
@@ -34,12 +34,15 @@
             }
         }
 
-        [HttpGet("League/{id}")]
-        public async Task<IActionResult> PlayersForLeague(int id)
+        [AllowAnonymous]
+        [HttpGet("League")]
+        public async Task<IActionResult> PlayersForLeague([FromQuery] SortQuerryModel model)
         {
             try
             {
-                var players = await statisticsService.PlayersForLeague(id);
+                var players = await statisticsService.PlayersForLeague(model.Id);
+
+                players = players.OrderByDescending(l => l.GetType().GetProperty(model.Sort).GetValue(l));
 
                 return Ok(players);
             }

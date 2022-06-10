@@ -31,8 +31,8 @@ async function getGamesForLeague(id) {
     return await api.get(host + "/Games/League/" + id);
 }
 
-async function getPlayersForLeague(id) {
-    return await api.get(host + "/Players/League/" + id);
+async function getPlayersForLeague(id, sortTerm) {
+    return await api.get(host + `/Players/League?id=${id}&&sort=${sortTerm}`);
 }
 
 export {

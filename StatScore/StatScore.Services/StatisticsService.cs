@@ -41,22 +41,21 @@
             .ToArrayAsync();
 
         public async Task<IEnumerable<PlayerLeagueServiceModel>> PlayersForLeague(int id)
-            => await dbContext
-            .PlayerLeagueStats
-            .Where(pl => pl.LeagueId == id)
-            .Select(pl => new PlayerLeagueServiceModel
-            {
-                FirstName = pl.Player.FirstName,
-                LastName = pl.Player.LastName,
-                IsInjured = pl.Player.IsInjured,
-                Position = pl.Player.Position,
-                Goals = pl.Goals,
-                Assists = pl.Assists,
-                Appearences = pl.Appearences,
-                TeamLogo = pl.Player.Team.LogoURL
-            })
-            .OrderByDescending(o => o.Goals)
-            .ToArrayAsync();
+             => await dbContext
+                     .PlayerLeagueStats
+                     .Where(pl => pl.LeagueId == id)
+                     .Select(pl => new PlayerLeagueServiceModel
+                     {
+                         FirstName = pl.Player.FirstName,
+                         LastName = pl.Player.LastName,
+                         IsInjured = pl.Player.IsInjured,
+                         Position = pl.Player.Position,
+                         Goals = pl.Goals,
+                         Assists = pl.Assists,
+                         Appearences = pl.Appearences,
+                         TeamLogo = pl.Player.Team.LogoURL
+                     })
+                     .ToArrayAsync();
 
         public async Task<IEnumerable<TeamLeagueServiceModel>> TeamsForLeague(int id)
             => await dbContext
