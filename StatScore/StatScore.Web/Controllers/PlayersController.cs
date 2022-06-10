@@ -2,11 +2,13 @@
 {
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+
     using StatScore.Services.Contracts;
     using StatScore.Services.Models.Statistics.Player;
+
     using static StatScore.Services.Models.Authentication.UserRoleModel;
 
-    [Authorize(Roles = UserRole)]
+    [Authorize(Roles = $"{UserRole},{AdminRole}")]
     [Route("[controller]")]
     [ApiController]
     public class PlayersController : ControllerBase
@@ -22,35 +24,19 @@
         [HttpGet("Overall")]
         public async Task<IActionResult> TopPlayersOverall()
         {
-            try
-            {
-                var players = await statisticsService.TopPlayersAccrossLeagues();
-
-                return Ok(players);
-            }
-            catch
-            {
-                return StatusCode(500, "Internal server error!");
-            }
+           var players = await statisticsService.TopPlayersAccrossLeagues();
+          
+           return Ok(players);
         }
 
         [HttpGet("League")]
         public async Task<IActionResult> PlayersForLeague([FromQuery] SortQuerryModel model)
         {
-            try
-            {
-                var players = await statisticsService.PlayersForLeague(model.Id);
+           var players = await statisticsService.PlayersForLeague(model.Id);
 
-                players = players.OrderByDescending(l => l.GetType().GetProperty(model.Sort).GetValue(l));
+           players = players.OrderByDescending(l => l.GetType().GetProperty(model.Sort).GetValue(l));
 
-                return Ok(players);
-            }
-            catch
-
-            {
-                return StatusCode(500, "Internal server error!");
-            }
-
+           return Ok(players);
         }
     }
 }

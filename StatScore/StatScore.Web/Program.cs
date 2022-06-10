@@ -27,14 +27,16 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-await app.PrepareDatabase();
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+await app.PrepareDatabase();
+
+app.ConfigureExceptionHandler();
 
 app.UseHttpsRedirection();
 

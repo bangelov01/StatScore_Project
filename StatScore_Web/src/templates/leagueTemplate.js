@@ -63,25 +63,25 @@ const tableTemplate = (team, index) => html`
 `
 
 const gamesTemplate = (game) => html`
-<tr>
-   <td style="font-size: 20px; font-style: italic;">
-      <div style="width: 110%; font-size: 20px">
-         <span style="float: left; font-size: 20px;"><h5>${game.homeTeamName}</h5></span>
-         <span style="float: right;"><img src="${game.homeLogoURL}" class="table-logo" style="margin-right: 10px; margin-bottom: 5px;"></img>${game.homeTeamGoals}</span>
+<tr class="games-row">
+   <td>
+      <div class="home-name">
+         <span><h5>${game.homeTeamName}</h5></span>
+         <span style="float: right;"><img src="${game.homeLogoURL}" class="table-logo-game" style="margin-right: 10px;"></img>${game.homeTeamGoals}</span>
       </div>
-      <div class="game-details" style="position: absolute; left: 10rem; margin-top: 40px;">
+      <div class="home-details">
          <p>Shots: <span>${game.homeTeamShots}</span></p>
          <p>Passes: <span>${game.homeTeamPasses}</span></p>
          <p>Fauls: <span>${game.homeTeamFauls}</span></p>
       </div>
    </td>
-   <td style="font-size: 20px; font-style: italic;">
+   <td>
       <span style="margin-left:15px; font-size: 20px">:</span>
-      <div style="width: 90%; float:right; font-size: 20px">
-         <span style="float: right;"><h5>${game.awayTeamName}</h5></span>
-         <span style="float: left;">${game.awayTeamGoals}<img src="${game.awayLogoURL}" style="margin-left: 10px; margin-bottom: 5px;"class="table-logo"></img></span>
+      <div class="away-name">
+         <span><h5>${game.awayTeamName}</h5></span>
+         <span style="float: left;">${game.awayTeamGoals}<img src="${game.awayLogoURL}" class="table-logo-game"></img></span>
       </div>
-      <div class="game-details" style="margin-top: 12px;">
+      <div class="away-details">
          <p>Shots: <span>${game.awayTeamShots}</span></p>
          <p>Passes: <span>${game.awayTeamPasses}</span></p>
          <p>Fauls: <span>${game.awayTeamFauls}</span></p>

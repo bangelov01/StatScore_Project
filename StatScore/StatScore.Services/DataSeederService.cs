@@ -1,9 +1,11 @@
 ﻿namespace StatScore.Services
 {
     using System.Threading.Tasks;
+
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Options;
+
     using StatScore.Data;
 
     using StatScore.Data.Models;

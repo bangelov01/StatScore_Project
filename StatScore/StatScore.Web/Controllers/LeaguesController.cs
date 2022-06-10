@@ -1,6 +1,7 @@
 ﻿namespace StatScore.Web.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
+
     using StatScore.Services.Contracts;
 
     [Route("[controller]")]
@@ -34,16 +35,9 @@
         [HttpGet("{id}")]
         public async Task<IActionResult> LeagueFullInfo(int id)
         {
-            try
-            {
-                var league = await leagueService.LeagueFullInfo(id);
+            var league = await leagueService.LeagueFullInfo(id);
 
-                return Ok(league);
-            }
-            catch
-            {
-                return StatusCode(500, "Internal server error!");
-            }
+            return Ok(league);
         }
     }
 }

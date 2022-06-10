@@ -1,6 +1,7 @@
 ﻿namespace StatScore.Web.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
+
     using StatScore.Services.Contracts;
 
     [Route("[controller]")]
@@ -17,31 +18,17 @@
         [HttpGet("League/{id}")]
         public async Task<IActionResult> TeamsTable(int id)
         {
-            try
-            {
-                var stats = await statisticsService.TeamsForLeague(id);
+            var stats = await statisticsService.TeamsForLeague(id);
 
-                return Ok(stats);
-            }
-            catch
-            {
-                return StatusCode(500, "Internal server error!");
-            }
+            return Ok(stats);
         }
 
         [HttpGet("Overall")]
         public async Task<IActionResult> TopTeamsOverall()
         {
-            try
-            {
-                var teams = await statisticsService.TopTeamsAcrossLeagues();
+            var teams = await statisticsService.TopTeamsAcrossLeagues();
 
-                return Ok(teams);
-            }
-            catch
-            {
-                return StatusCode(500, "Internal server error!");
-            }
+            return Ok(teams);
         }
     }
 }

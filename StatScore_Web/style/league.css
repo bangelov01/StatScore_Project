@@ -26,13 +26,13 @@
     margin-top: 20px;
 }
 
+.league-h4 span {
+    color: yellowgreen;
+}
+
 .info-h4 span{
     font-size: 20px;
     margin-right: 50px;
-}
-
-.league-h4 span {
-    color: yellowgreen;
 }
 
 .img-league{
@@ -52,4 +52,46 @@
 .table-logo {
     width: 23px;
     height:30px;
+}
+
+.table-logo-game {
+    width: 23px;
+    height:30px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+.game-row td {
+    font-size: 20px;
+    font-style: italic;
+}
+
+.home-name{
+    width: 110%;
+    font-size: 20px;
+}
+
+.away-name {
+    width: 90%;
+    float:right;
+    font-size: 20px;
+}
+
+.home-details {
+    position: absolute;
+    left: 10rem;
+    margin-top: 40px;
+}
+
+.away-details {
+    margin-top: 12px;
+}
+
+.home-name span{
+    float: left;
+     font-size: 20px;
+}
+
+.away-name span{
+    float: right;
 }

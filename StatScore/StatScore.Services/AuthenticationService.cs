@@ -11,7 +11,7 @@
 
     using StatScore.Data.Models;
     using StatScore.Services.Contracts;
-    using StatScore.Services.Models;
+    using StatScore.Services.Models.Authentication;
     using StatScore.Services.Models.Authentication.Export;
     using StatScore.Services.Models.Authentication.Import;
 
