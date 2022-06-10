@@ -34,7 +34,6 @@
             }
         }
 
-        [AllowAnonymous]
         [HttpGet("League")]
         public async Task<IActionResult> PlayersForLeague([FromQuery] SortQuerryModel model)
         {
@@ -47,6 +46,7 @@
                 return Ok(players);
             }
             catch
+
             {
                 return StatusCode(500, "Internal server error!");
             }

@@ -8,35 +8,40 @@ export const playersTemplate = (onclick, onClickSort, leagueInfo, players) => ht
          <button class="btn btn-lg dropdown-toggle type="button" data-bs-toggle="dropdown" aria-expanded="false">
          Select League
          </button>
-         <ul class="dropdown-menu">
+         <ul class="dropdown-menu" @click=${onclick}>
             ${leagueInfo.map((l) => html`
-            <li><h5 id="${l.id}" @click=${onclick}>${l.name}</h5></li>
+            <li><h5 id="${l.id}">${l.name}</h5></li>
             `)}
          </ul>
       </div>
    </div>
-   <div class="player card bg-light shadow">
-   <div class="card-body text-center">
-      <table class="table table-hover">
-         <thead>
-            <tr @click=${onClickSort}>
-               <th scope="col">Name</th>
-               <th scope="col">Team</th>
-               <th class="sort" scope="col">Goals</th>
-               <th class="sort" scope="col">Assists</th>
-               <th class="sort" scope="col">Appearences</th>
-               <th scope="col">Position</th>
-               <th scope="col">Injured</th>
-            </tr>
-         </thead>
-         <tbody>
-            ${Object.keys(players).length == 0 ? "" : players.map(playersTableTemplate)}
-         </tbody>
-      </table>
-   </div>
-</div>
+   ${Object.keys(players).length == 0 ? "" : tableTemplate(onClickSort, players)}
 </section>
 `;
+
+const tableTemplate = (onClickSort, players) => html`
+<div class="player card bg-light shadow">
+<div class="card-body text-center fst-italic">
+    <p>*Players can be sorted by Goals/Assists or Appearences.</p>
+    <table class="table table-hover">
+      <thead>
+          <tr @click=${onClickSort}>
+            <th scope="col">Name</th>
+            <th scope="col">Team</th>
+            <th class="sort" scope="col">Goals</th>
+            <th class="sort" scope="col">Assists</th>
+            <th class="sort" scope="col">Appearences</th>
+            <th scope="col">Position</th>
+            <th scope="col">Injured</th>
+          </tr>
+      </thead>
+      <tbody>
+          ${players.map(playersTableTemplate)}
+      </tbody>
+    </table>
+</div>
+</div>
+`
 
 const playersTableTemplate = (player) => html`
 <tr>

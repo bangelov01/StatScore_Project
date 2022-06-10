@@ -4,7 +4,7 @@ export const loginTemplate = (onSubmit) => html`
 <section id="login">
 <form id="register-form" @submit=${onSubmit}>
     <div class="container login fst-italic">
-        <h1 class="display-4">Login</h1>
+        <h1 class="fst-italic">Login</h1>
         <label for="username">Username</label>
         <input id="username" placeholder="Enter Username" name="username" type="text">
         <label for="password">Password</label>

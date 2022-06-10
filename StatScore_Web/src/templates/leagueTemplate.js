@@ -9,7 +9,7 @@ export const leagueTemplate = (leagueInfo, leagueStats, leagueGames) => html`
 <span>Season: ${leagueInfo.season}</span></h4>
 <div class="league card bg-light shadow">
    <h4 class="league-h4">Current <span>Table</span></h4>
-   <div class="card-body text-center">
+   <div class="card-body text-center fst-italic">
       <table class="table table-hover">
          <thead>
             <tr>
@@ -31,7 +31,7 @@ export const leagueTemplate = (leagueInfo, leagueStats, leagueGames) => html`
 </div>
 <h4 class="league-h4">Last <span>Five</span> Games</h4>
 <div class="game card bg-light shadow">
-   <div class="card-body">
+   <div class="card-body fst-italic">
    <table class="table table-hover">
    <thead>
       <tr>

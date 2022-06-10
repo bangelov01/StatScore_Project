@@ -5,6 +5,7 @@ import { getPlayersForLeague, getLeaguesBasicInfo } from "../api/data.js"
 export async function playersPage(ctx) {
 
     const token = sessionStorage.getItem("userToken");
+    let leagueId;
 
     if (token === null) {
         alert("You need to be a user to access this page!");
@@ -16,11 +17,16 @@ export async function playersPage(ctx) {
 
     async function onClickLeagues(e) {
 
-        document.querySelector("button").textContent = e.target.textContent
+        if(e.target.tagName.toLowerCase() === "h5") {
 
-        const players = await getPlayersForLeague(e.target.id, "Goals");
+            document.querySelector("button").textContent = e.target.textContent
 
-        ctx.render(playersTemplate(onClickLeagues, onClickSort, result, players));
+            leagueId = e.target.id;
+    
+            const players = await getPlayersForLeague(e.target.id, "Goals");
+    
+            ctx.render(playersTemplate(onClickLeagues, onClickSort, result, players));
+        }
     }
 
     async function onClickSort(e) {
@@ -28,7 +34,10 @@ export async function playersPage(ctx) {
         if(e.target.textContent == "Goals" 
         || e.target.textContent == "Assists" 
         || e.target.textContent == "Appearences") {
-            console.log(e.target.textContent)
+
+            const sorted = await getPlayersForLeague(leagueId, e.target.textContent)
+
+            ctx.render(playersTemplate(onClickLeagues, onClickSort, result, sorted));
         }
     }
 }
