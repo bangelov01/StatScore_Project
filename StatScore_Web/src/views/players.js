@@ -5,15 +5,21 @@ import { getPlayersForLeague, getLeaguesBasicInfo } from "../api/data.js"
 export async function playersPage(ctx) {
 
     const token = sessionStorage.getItem("userToken");
-    let leagueId;
 
     if (token === null) {
         alert("You need to be a user to access this page!");
         return ctx.page.redirect("/login");
     }
 
-    const result = await getLeaguesBasicInfo(1);
-    ctx.render(playersTemplate(onClickLeagues, onClickSort, result, {}));
+    let leagueId = 1;
+
+    const defaultOrder = "Goals";
+
+    const leagueInfo = await getLeaguesBasicInfo(1);
+
+    const initialPlayers = await getPlayersForLeague(1, defaultOrder);
+
+    ctx.render(playersTemplate(onClickLeagues, onClickSort, leagueInfo, initialPlayers));
 
     async function onClickLeagues(e) {
 
@@ -23,9 +29,9 @@ export async function playersPage(ctx) {
 
             leagueId = e.target.id;
     
-            const players = await getPlayersForLeague(e.target.id, "Goals");
+            const players = await getPlayersForLeague(e.target.id, defaultOrder);
     
-            ctx.render(playersTemplate(onClickLeagues, onClickSort, result, players));
+            ctx.render(playersTemplate(onClickLeagues, onClickSort, leagueInfo, players));
         }
     }
 
@@ -37,7 +43,7 @@ export async function playersPage(ctx) {
 
             const sorted = await getPlayersForLeague(leagueId, e.target.textContent)
 
-            ctx.render(playersTemplate(onClickLeagues, onClickSort, result, sorted));
+            ctx.render(playersTemplate(onClickLeagues, onClickSort, leagueInfo, sorted));
         }
     }
 }

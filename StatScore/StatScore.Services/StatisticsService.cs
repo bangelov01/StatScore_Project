@@ -27,14 +27,14 @@
             {
                 HomeTeamName = g.HomeTeam.Name,
                 AwayTeamName = g.AwayTeam.Name,
-                HomeTeamGoals = g.HomeTeamGoals,
-                AwayTeamGoals = g.AwayTeamGoals,
-                HomeTeamShots = g.HomeTeamShots,
-                AwayTeamShots = g.AwayTeamShots,
-                HomeTeamFauls = g.HomeTeamFauls,
-                AwayTeamFauls = g.AwayTeamFauls,
-                HomeTeamPasses = g.HomeTeamPasses,
-                AwayTeamPasses = g.AwayTeamPasses,
+                HomeTeamGoals = g.HomeGoals,
+                AwayTeamGoals = g.AwayGoals,
+                HomeTeamShots = g.HomeShots,
+                AwayTeamShots = g.AwayShots,
+                HomeTeamFauls = g.HomeFauls,
+                AwayTeamFauls = g.AwayFauls,
+                HomeTeamPasses = g.HomePasses,
+                AwayTeamPasses = g.AwayPasses,
                 HomeLogoURL = g.HomeTeam.LogoURL,
                 AwayLogoURL = g.AwayTeam.LogoURL,
             })
@@ -69,10 +69,10 @@
                         Draws = ls.Draws,
                         Losses = ls.Losses,
                         logoURL = ls.Team.LogoURL,
-                        GoalsAquired = ls.Team.HomeGames.Where(hg => hg.LeagueId == id).Sum(s => s.HomeTeamGoals)
-                            + ls.Team.AwayGames.Where(hg => hg.LeagueId == id).Sum(s => s.AwayTeamGoals),
-                        GoalsConceded = ls.Team.AwayGames.Where(hg => hg.LeagueId == id).Sum(s => s.HomeTeamGoals)
-                            + ls.Team.HomeGames.Where(hg => hg.LeagueId == id).Sum(s => s.AwayTeamGoals),
+                        GoalsAquired = ls.Team.HomeGames.Where(hg => hg.LeagueId == id).Sum(s => s.HomeGoals)
+                            + ls.Team.AwayGames.Where(hg => hg.LeagueId == id).Sum(s => s.AwayGoals),
+                        GoalsConceded = ls.Team.AwayGames.Where(hg => hg.LeagueId == id).Sum(s => s.HomeGoals)
+                            + ls.Team.HomeGames.Where(hg => hg.LeagueId == id).Sum(s => s.AwayGoals),
                     })
                     .OrderByDescending(o => o.Wins)
                     .ThenByDescending(o => o.Draws)

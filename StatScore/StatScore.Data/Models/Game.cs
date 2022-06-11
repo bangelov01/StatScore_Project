@@ -24,21 +24,21 @@
         public int LeagueId { get; init; }
         public virtual League League { get; init; }
 
-        public byte HomeTeamGoals { get; set; }
+        public byte HomeGoals { get; set; }
 
-        public byte AwayTeamGoals { get; set; }
+        public byte AwayGoals { get; set; }
 
-        public byte HomeTeamShots { get; set; }
+        public byte HomeShots { get; set; }
 
-        public byte AwayTeamShots { get; set; }
+        public byte AwayShots { get; set; }
 
-        public int HomeTeamPasses { get; set; }
+        public int HomePasses { get; set; }
 
-        public int AwayTeamPasses { get; set; }
+        public int AwayPasses { get; set; }
 
-        public byte HomeTeamFauls { get; set; }
+        public byte HomeFauls { get; set; }
 
-        public byte AwayTeamFauls { get; set; }
+        public byte AwayFauls { get; set; }
 
         public DateTime Date { get; set; }
     }

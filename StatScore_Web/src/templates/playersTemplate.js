@@ -6,7 +6,7 @@ export const playersTemplate = (onclick, onClickSort, leagueInfo, players) => ht
       <h1>Players <span>Stats</span></h1>
          <div class="btn-group">
          <button class="btn btn-lg dropdown-toggle type="button" data-bs-toggle="dropdown" aria-expanded="false">
-         Select League
+         ${leagueInfo[0].name}
          </button>
          <ul class="dropdown-menu" @click=${onclick}>
             ${leagueInfo.map((l) => html`
