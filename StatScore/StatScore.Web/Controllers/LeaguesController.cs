@@ -20,16 +20,10 @@
         [HttpGet]
         public async Task<IActionResult> LeaguesBasicInfo()
         {
-            try
-            {
-                var leagues = await leagueService.LeaguesBaseInfo();
 
-                return Ok(leagues);
-            }
-            catch
-            {
-                return StatusCode(500, "Internal server error!");
-            }
+            var leagues = await leagueService.LeaguesBaseInfo();
+
+            return Ok(leagues);
         }
 
         [HttpGet("{id}")]

@@ -22,7 +22,5 @@
         public byte Losses { get; set; }
 
         public byte Draws { get; set; }
-
-        public byte Points { get; set; }
     }
 }
