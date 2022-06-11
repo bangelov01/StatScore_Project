@@ -3,6 +3,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     using StatScore.Services.Contracts;
+    using StatScore.Services.Models.Authentication;
     using StatScore.Services.Models.Authentication.Import;
 
     [Route("[controller]")]
@@ -24,7 +25,7 @@
 
             if (response.Status == "Error")
             {
-                return StatusCode(500, response);
+                return StatusCode(StatusCodes.Status400BadRequest, response);
             }
 
             return Ok(response);
@@ -38,7 +39,8 @@
 
             if (response == null)
             {
-                return Unauthorized();
+                return StatusCode(StatusCodes.Status404NotFound,
+                    new ResponseModel { Status = "Error", Message = "Invalid Username and/or Password!"});
             }
 
             return Ok(response);

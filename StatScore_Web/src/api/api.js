@@ -25,6 +25,7 @@ async function login(username, password) {
     sessionStorage.setItem("userId", response.id);
     sessionStorage.setItem("username", response.userName);
     sessionStorage.setItem("tokenExpiration", response.expiration);
+    sessionStorage.setItem("isAdmin", response.isAdmin);
 
     return response;
 }

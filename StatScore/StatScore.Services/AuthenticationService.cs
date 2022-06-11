@@ -63,7 +63,8 @@
                     Id = user.Id,
                     UserName = user.UserName,
                     Token = new JwtSecurityTokenHandler().WriteToken(token),
-                    Expiration = token.ValidTo
+                    Expiration = token.ValidTo,
+                    IsAdmin = userRoles.Contains(AdminRole)
                 };
             }
 

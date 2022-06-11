@@ -18,8 +18,14 @@ export async function loginPage(ctx) {
                 throw new Error ("Fields must not be empty!")
             }
 
-            await login(username, password);
+            const response = await login(username, password);
+
             ctx.setUpUserNav();
+
+            if(response.isAdmin) {
+                return ctx.page.redirect("/admin");
+            }
+            
             ctx.page.redirect("/");
 
         } catch (error) {

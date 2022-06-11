@@ -9,6 +9,7 @@ import { loginPage } from "./views/login.js"
 import { homePage } from "./views/home.js"
 import { leaguePage } from "./views/league.js"
 import { playersPage } from "./views/players.js"
+import { adminPage } from "./views/admin.js"
 
 const main = document.querySelector("main");
 
@@ -17,6 +18,7 @@ page("/register", middleWareRender, registerPage);
 page("/login", middleWareRender, loginPage);
 page("/league/:id", middleWareRender, leaguePage);
 page("/players", middleWareRender, playersPage);
+page("/admin", middleWareRender, adminPage);
 
 setUpUserNav();
 SetLeaguesDropdown();
