@@ -401,9 +401,9 @@
                     {
                         PlayerId = j,
                         LeagueId = leagueId,
-                        Goals = (byte)rand.Next(0, 12),
-                        Assists = (byte)rand.Next(0, 12),
-                        Appearences = (byte)rand.Next(1, 6),
+                        Goals = rand.Next(0, 12),
+                        Assists = rand.Next(0, 12),
+                        Appearences = rand.Next(1, 6),
                     });
                 }
             }
