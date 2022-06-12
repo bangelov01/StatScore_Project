@@ -20,7 +20,6 @@
         [HttpGet]
         public async Task<IActionResult> LeaguesBasicInfo()
         {
-
             var leagues = await leagueService.LeaguesBaseInfo();
 
             return Ok(leagues);

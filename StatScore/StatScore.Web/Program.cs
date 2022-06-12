@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using StatScore.Web.Infrastructure;
 using StatScore.Data;
 using StatScore.Services.Models;
+using StatScore.Services.Utilities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,8 @@ builder.Services.Configure<AppSettingsModel>(
     .GetSection("AdministrationDetails"));
 
 builder.Services.AddControllers();
+
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 builder.Services.RegisterTransient();
 builder.Services.SetUpIdentityForDevelopment();

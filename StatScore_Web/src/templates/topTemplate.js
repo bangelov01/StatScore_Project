@@ -52,7 +52,7 @@ const topTemplate = (teams, players) => html`
                   </table>
                </div>
                <div class="bottom card-body text-center">
-                  <h5>To view more details - <a href="/login">Log In now.</a></h5>
+                  ${sessionStorage.getItem("userToken") == null ? html`<h5>To view more details - <a href="/login">Log In now.</a></h5>` : ""}
                </div>
             </div>
          </div>

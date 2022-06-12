@@ -17,10 +17,10 @@
 
         public virtual League League { get; init; }
 
-        public byte Wins { get; set; }
+        public int Wins { get; set; }
 
-        public byte Losses { get; set; }
+        public int Losses { get; set; }
 
-        public byte Draws { get; set; }
+        public int Draws { get; set; }
     }
 }

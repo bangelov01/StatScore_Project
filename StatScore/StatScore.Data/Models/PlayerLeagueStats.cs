@@ -17,10 +17,10 @@
 
         public virtual League League { get; init; }
 
-        public byte Goals { get; set; }
+        public int Goals { get; set; }
 
-        public byte Assists { get; set; }
+        public int Assists { get; set; }
 
-        public byte Appearences { get; set; }
+        public int Appearences { get; set; }
     }
 }

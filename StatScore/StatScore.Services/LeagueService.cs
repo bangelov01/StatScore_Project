@@ -2,6 +2,9 @@
 {
     using System.Threading.Tasks;
 
+    using AutoMapper;
+    using AutoMapper.QueryableExtensions;
+
     using Microsoft.EntityFrameworkCore;
 
     using StatScore.Data;
@@ -12,33 +15,25 @@
     public class LeagueService : ILeagueService
     {
         private readonly SSDbContext dbContext;
+        private readonly IConfigurationProvider mapper;
 
-        public LeagueService(SSDbContext dbContext)
+        public LeagueService(SSDbContext dbContext, IMapper mapper)
         {
             this.dbContext = dbContext;
+            this.mapper = mapper.ConfigurationProvider;
         }
 
         public async Task<LeagueInfoServiceModel> LeagueFullInfo(int id)
             => await dbContext
             .Leagues
             .Where(x => x.Id == id)
-            .Select(x => new LeagueInfoServiceModel
-            {
-                Name = x.Name,
-                Season = x.Season,
-                LogoURL = x.LogoURL,
-                CountryName = x.Country.Name
-            })
+            .ProjectTo<LeagueInfoServiceModel>(mapper)
             .FirstOrDefaultAsync();
 
         public async Task<IEnumerable<LeagueBaseModel>> LeaguesBaseInfo()
             => await dbContext
             .Leagues
-            .Select(l => new LeagueBaseModel
-            {
-                Id = l.Id,
-                Name = l.Name
-            })
+            .ProjectTo<LeagueBaseModel>(mapper)
             .ToArrayAsync();
     }
 }
