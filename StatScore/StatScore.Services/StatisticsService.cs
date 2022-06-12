@@ -3,6 +3,7 @@
     using Microsoft.EntityFrameworkCore;
 
     using StatScore.Data;
+    using StatScore.Data.Models;
     using StatScore.Services.Contracts;
     using StatScore.Services.Models.Statistics.Base;
     using StatScore.Services.Models.Statistics.Game;
@@ -27,36 +28,47 @@
             {
                 HomeTeamName = g.HomeTeam.Name,
                 AwayTeamName = g.AwayTeam.Name,
-                HomeTeamGoals = g.HomeGoals,
-                AwayTeamGoals = g.AwayGoals,
-                HomeTeamShots = g.HomeShots,
-                AwayTeamShots = g.AwayShots,
-                HomeTeamFauls = g.HomeFauls,
-                AwayTeamFauls = g.AwayFauls,
-                HomeTeamPasses = g.HomePasses,
-                AwayTeamPasses = g.AwayPasses,
+                HomeGoals = g.HomeGoals,
+                AwayGoals = g.AwayGoals,
+                HomeShots = g.HomeShots,
+                AwayShots = g.AwayShots,
+                HomeFauls = g.HomeFauls,
+                AwayFauls = g.AwayFauls,
+                HomePasses = g.HomePasses,
+                AwayPasses = g.AwayPasses,
                 HomeLogoURL = g.HomeTeam.LogoURL,
                 AwayLogoURL = g.AwayTeam.LogoURL,
             })
             .Take(5)
             .ToArrayAsync();
 
-        public async Task<IEnumerable<PlayerLeagueServiceModel>> PlayersForLeague(int id)
-             => await dbContext
-                     .PlayerLeagueStats
-                     .Where(pl => pl.LeagueId == id)
-                     .Select(pl => new PlayerLeagueServiceModel
-                     {
-                         FirstName = pl.Player.FirstName,
-                         LastName = pl.Player.LastName,
-                         IsInjured = pl.Player.IsInjured,
-                         Position = pl.Player.Position,
-                         Goals = pl.Goals,
-                         Assists = pl.Assists,
-                         Appearences = pl.Appearences,
-                         TeamLogo = pl.Player.Team.LogoURL
-                     })
-                     .ToArrayAsync();
+        public async Task<IEnumerable<PlayerLeagueServiceModel>> PlayersForLeague(int id, string sort)
+        {
+            var playersQuery = dbContext
+                    .PlayerLeagueStats
+                    .Where(pl => pl.LeagueId == id)
+                    .Select(pl => new PlayerLeagueServiceModel
+                    {
+                        FirstName = pl.Player.FirstName,
+                        LastName = pl.Player.LastName,
+                        IsInjured = pl.Player.IsInjured,
+                        Position = pl.Player.Position,
+                        Goals = pl.Goals,
+                        Assists = pl.Assists,
+                        Appearences = pl.Appearences,
+                        TeamLogo = pl.Player.Team.LogoURL
+                    })
+                    .AsQueryable();
+
+            playersQuery = sort switch
+            {
+                nameof(PlayerLeagueStats.Goals) => playersQuery.OrderByDescending(o => o.Goals),
+                nameof(PlayerLeagueStats.Appearences) => playersQuery.OrderByDescending(o => o.Appearences),
+                nameof(PlayerLeagueStats.Assists) => playersQuery.OrderByDescending(o => o.Assists),
+            };
+
+            return await playersQuery.ToArrayAsync();
+        }
 
         public async Task<IEnumerable<TeamLeagueServiceModel>> TeamsForLeague(int id)
             => await dbContext
@@ -96,7 +108,8 @@
                .ToArrayAsync();
 
         public async Task<IEnumerable<TeamLeagueBaseModel>> TopTeamsAcrossLeagues()
-            => await dbContext
+        {
+            var asd = await dbContext
                  .LeagueStats
                  .GroupBy(x => x.Team.Name)
                  .Select(g => new TeamLeagueBaseModel
@@ -106,9 +119,12 @@
                      Draws = g.Sum(s => s.Draws),
                      Losses = g.Sum(s => s.Losses),
                  })
-                 .OrderByDescending(o => o.Wins)
-                 .ThenByDescending(o => o.Draws)
-                 .Take(4)
                  .ToArrayAsync();
+
+            return asd.OrderByDescending(o => o.WinRate)
+                            .ThenByDescending(o => o.Wins)
+                            .Take(4)
+                            .ToArray();
+        }
     }
 }

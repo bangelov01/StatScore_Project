@@ -9,7 +9,7 @@ export const leagueTemplate = (leagueInfo, leagueStats, leagueGames) => html`
 <span>Season: ${leagueInfo.season}</span></h4>
 <div class="league card bg-light shadow">
    <h4 class="league-h4">Current <span>Table</span></h4>
-   <div class="card-body text-center fst-italic">
+   <div class="card-body text-center">
       <table class="table table-hover">
          <thead>
             <tr>
@@ -19,7 +19,8 @@ export const leagueTemplate = (leagueInfo, leagueStats, leagueGames) => html`
                <th scope="col">Draws</th>
                <th scope="col">Losses</th>
                <th scope="col">Points</th>
-               <th scope="col">G/D</th>
+               <th scope="col">GF</th>
+               <th scope="col">GA</th>
                <th scope="col">Win Ratio</th>
             </tr>
          </thead>
@@ -31,7 +32,7 @@ export const leagueTemplate = (leagueInfo, leagueStats, leagueGames) => html`
 </div>
 <h4 class="league-h4">Last <span>Five</span> Games</h4>
 <div class="game card bg-light shadow">
-   <div class="card-body fst-italic">
+   <div class="card-body">
    <table class="table table-hover">
    <thead>
       <tr>
@@ -57,7 +58,8 @@ const tableTemplate = (team, index) => html`
    <td>${team.draws}</td>
    <td>${team.losses}</td>
    <td>${team.points}</td>
-   <td>${(team.goalsAquired - team.goalsConceded)}</td>
+   <td>${team.goalsAquired}</td>
+   <td>${team.goalsConceded}</td>
    <td>${team.winRate}%</td>
 </tr>
 `
@@ -67,24 +69,24 @@ const gamesTemplate = (game) => html`
    <td>
       <div class="home-name">
          <span><h5>${game.homeTeamName}</h5></span>
-         <span style="float: right;"><img src="${game.homeLogoURL}" class="table-logo-game" style="margin-right: 10px;"></img>${game.homeTeamGoals}</span>
+         <span style="float: right;"><img src="${game.homeLogoURL}" class="table-logo-game" style="margin-right: 10px;"></img>${game.homeGoals}</span>
       </div>
       <div class="home-details">
-         <p>Shots: <span>${game.homeTeamShots}</span></p>
-         <p>Passes: <span>${game.homeTeamPasses}</span></p>
-         <p>Fauls: <span>${game.homeTeamFauls}</span></p>
+         <p>Shots: <span>${game.homeShots}</span></p>
+         <p>Passes: <span>${game.homePasses}</span></p>
+         <p>Fauls: <span>${game.homeFauls}</span></p>
       </div>
    </td>
    <td>
       <span style="margin-left:15px; font-size: 20px">:</span>
       <div class="away-name">
          <span><h5>${game.awayTeamName}</h5></span>
-         <span style="float: left;">${game.awayTeamGoals}<img src="${game.awayLogoURL}" class="table-logo-game"></img></span>
+         <span style="float: left;">${game.awayGoals}<img src="${game.awayLogoURL}" class="table-logo-game"></img></span>
       </div>
       <div class="away-details">
-         <p>Shots: <span>${game.awayTeamShots}</span></p>
-         <p>Passes: <span>${game.awayTeamPasses}</span></p>
-         <p>Fauls: <span>${game.awayTeamFauls}</span></p>
+         <p>Shots: <span>${game.awayShots}</span></p>
+         <p>Passes: <span>${game.awayPasses}</span></p>
+         <p>Fauls: <span>${game.awayFauls}</span></p>
       </div>         
    </td>
 </tr>

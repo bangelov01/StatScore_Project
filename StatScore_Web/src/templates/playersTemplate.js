@@ -15,13 +15,13 @@ export const playersTemplate = (onclick, onClickSort, leagueInfo, players) => ht
          </ul>
       </div>
    </div>
-   ${Object.keys(players).length == 0 ? "" : tableTemplate(onClickSort, players)}
+   ${tableTemplate(onClickSort, players)}
 </section>
 `;
 
 const tableTemplate = (onClickSort, players) => html`
 <div class="player card bg-light shadow">
-<div class="card-body text-center fst-italic">
+<div class="card-body text-center">
     <p>*Players can be sorted by Goals/Assists or Appearences.</p>
     <table class="table table-hover">
       <thead>

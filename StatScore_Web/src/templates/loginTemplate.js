@@ -3,7 +3,7 @@ import { html } from "../../node_modules/lit-html/lit-html.js"
 export const loginTemplate = (onSubmit) => html`
 <section id="login">
 <form id="register-form" @submit=${onSubmit}>
-    <div class="container login fst-italic">
+    <div class="container login">
         <h1 class="fst-italic">Login</h1>
         <label for="username">Username</label>
         <input id="username" placeholder="Enter Username" name="username" type="text">

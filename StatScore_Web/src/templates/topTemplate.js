@@ -9,7 +9,7 @@ const topTemplate = (teams, players) => html`
    <div class="container home">
       <div class="row row-cols-1 row-cols-md-2 g-4">
          <div class="col">
-            <div class="card bg-light shadow" style="width: 30rem; border-radius: 4%;">
+            <div class="card bg-light shadow" style="width: 40rem; border-radius: 4%;">
                <div class="card-body text-center">
                   <h5 class="card-title fst-italic display-6 fw-bold">Top Performing Teams</h5>
                   <h4>Across all leagues</h4>
@@ -32,7 +32,7 @@ const topTemplate = (teams, players) => html`
             </div>
          </div>
          <div class="col col-centered">
-            <div class="card bg-light shadow" style="width: 30rem; border-radius: 4%;">
+            <div class="card bg-light shadow" style="width: 40rem; border-radius: 4%;">
                <div class="card-body text-center">
                   <h5 class="card-title fst-italic display-6 fw-bold">Top Performing Players</h5>
                   <h4>Across all leagues</h4>

@@ -20,11 +20,14 @@ export async function registerPage(ctx) {
             if (username == '' || email == '' || password == "" || repeatPass == '') {
                 throw new Error ("Fields must not be empty!");
             }
+            if(!email.match(/^[a-z0-9.]{1,64}@[a-z0-9.]{1,64}$/i)) {
+                throw new Error ("Not a valid Email!");
+            }
             if (password !== repeatPass) {
                 throw new Error ("Passwords do not match!");
             }
 
-            await register(username, email, password);
+            const result = await register(username, email, password);
             ctx.setUpUserNav();
             alert("Registration successfull!")
             ctx.page.redirect("/login")

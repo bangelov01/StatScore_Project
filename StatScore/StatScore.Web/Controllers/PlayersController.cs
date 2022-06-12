@@ -32,9 +32,9 @@
         [HttpGet("League")]
         public async Task<IActionResult> PlayersForLeague([FromQuery] SortQuerryModel model)
         {
-           var players = await statisticsService.PlayersForLeague(model.Id);
+           var players = await statisticsService.PlayersForLeague(model.Id, model.Sort);
 
-           players = players.OrderByDescending(l => l.GetType().GetProperty(model.Sort).GetValue(l));
+           //players = players.OrderByDescending(l => l.GetType().GetProperty(model.Sort).GetValue(l));
 
            return Ok(players);
         }

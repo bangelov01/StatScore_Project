@@ -1,11 +1,9 @@
 .container .home {
     width: 10%;
-    margin-left: 200px;
 }
 
 .card {
-    margin-left: 100px;
-    margin-right: 0px;
+    font-style: italic;
     transition: transform .2s;
 }
 

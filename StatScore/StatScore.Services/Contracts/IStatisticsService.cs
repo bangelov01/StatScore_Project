@@ -15,6 +15,6 @@
 
         public Task<IEnumerable<GameServiceModel>> GamesForLeague(int id);
 
-        public Task<IEnumerable<PlayerLeagueServiceModel>> PlayersForLeague(int id);
+        public Task<IEnumerable<PlayerLeagueServiceModel>> PlayersForLeague(int id, string sort);
     }
 }
