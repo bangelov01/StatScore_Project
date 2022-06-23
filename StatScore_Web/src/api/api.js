@@ -31,11 +31,11 @@ async function login(username, password) {
 }
 
 function logout(){
-
     sessionStorage.removeItem("userToken");
     sessionStorage.removeItem("userId");
     sessionStorage.removeItem("username");
     sessionStorage.removeItem("tokenExpiration");
+    sessionStorage.removeItem("isAdmin");
 }
 
 async function request(url, options) {
