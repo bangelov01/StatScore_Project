@@ -1,6 +1,9 @@
 import * as api from "./api.js"
 
-const host = "https://localhost:44395";
+// const iisPort = "44395"; -- IIS
+const appPort = "7288";
+
+const host = "https://localhost:" + appPort;
 api.settings.host = host;
 
 export const register = api.register;
