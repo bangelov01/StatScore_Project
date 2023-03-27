@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "lit-html": "^2.2.5",
+    "lite-server": "^2.6.1",
     "page": "^1.11.6"
   }
 }
